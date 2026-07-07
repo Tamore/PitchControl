@@ -1,0 +1,134 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { AnimatePresence, motion } from 'framer-motion'
+import {
+  Bell,
+  User,
+  Wallet,
+  Settings,
+  Accessibility,
+  Sparkles,
+  LogOut,
+  ChevronRight,
+} from 'lucide-react'
+import { FAN, NOTIFICATIONS } from '@/lib/fan-data'
+
+const MENU = [
+  { href: '/profile', label: 'Profile', icon: User },
+  { href: '/wallet', label: 'Wallet', icon: Wallet },
+  { href: '/notifications', label: 'Notifications', icon: Bell },
+  { href: '/accessibility', label: 'Accessibility', icon: Accessibility },
+  { href: '/transparency', label: 'AI Transparency', icon: Sparkles },
+  { href: '/settings', label: 'Settings', icon: Settings },
+]
+
+export function AccountMenu() {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const unread = NOTIFICATIONS.filter((n) => !n.read).length
+
+  useEffect(() => {
+    function onClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', onClick)
+    return () => document.removeEventListener('mousedown', onClick)
+  }, [])
+
+  return (
+    <div className="flex items-center gap-1.5">
+      <Link
+        href="/notifications"
+        aria-label={`Notifications, ${unread} unread`}
+        className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/70 text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <Bell className="h-4 w-4" />
+        {unread > 0 && (
+          <span className="absolute -right-1 -top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[0.6rem] font-bold text-primary-foreground">
+            {unread}
+          </span>
+        )}
+      </Link>
+
+      <div className="relative" ref={ref}>
+        <button
+          onClick={() => setOpen((o) => !o)}
+          aria-haspopup="menu"
+          aria-expanded={open}
+          className="inline-flex items-center gap-2 rounded-full border border-border/70 py-1 pl-1 pr-2.5 transition-colors hover:border-primary/40"
+        >
+          <span className="relative h-7 w-7 overflow-hidden rounded-full border border-border">
+            <Image src={FAN.avatar} alt={FAN.name} fill className="object-cover" sizes="28px" />
+          </span>
+          <span className="hidden text-xs font-medium text-foreground sm:inline">
+            {FAN.name.split(' ')[0]}
+          </span>
+        </button>
+
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: 8, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 8, scale: 0.97 }}
+              transition={{ duration: 0.16 }}
+              role="menu"
+              className="absolute right-0 top-12 w-64 overflow-hidden rounded-2xl border border-border/70 bg-popover p-1.5 shadow-2xl"
+            >
+              <Link
+                href="/profile"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3 rounded-xl p-2.5 transition-colors hover:bg-secondary"
+              >
+                <span className="relative h-10 w-10 overflow-hidden rounded-full border border-border">
+                  <Image src={FAN.avatar} alt={FAN.name} fill className="object-cover" sizes="40px" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block truncate text-sm font-semibold text-popover-foreground">
+                    {FAN.name}
+                  </span>
+                  <span className="block truncate text-xs text-muted-foreground">{FAN.tier}</span>
+                </span>
+                <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
+              </Link>
+
+              <div className="my-1.5 h-px bg-border/60" />
+
+              {MENU.map((m) => (
+                <Link
+                  key={m.href}
+                  href={m.href}
+                  onClick={() => setOpen(false)}
+                  role="menuitem"
+                  className="flex items-center gap-3 rounded-xl px-2.5 py-2 text-sm text-popover-foreground transition-colors hover:bg-secondary"
+                >
+                  <m.icon className="h-4 w-4 text-muted-foreground" />
+                  {m.label}
+                  {m.href === '/notifications' && unread > 0 && (
+                    <span className="ml-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-[0.65rem] font-bold text-primary-foreground">
+                      {unread}
+                    </span>
+                  )}
+                </Link>
+              ))}
+
+              <div className="my-1.5 h-px bg-border/60" />
+
+              <button
+                onClick={() => setOpen(false)}
+                role="menuitem"
+                className="flex w-full items-center gap-3 rounded-xl px-2.5 py-2 text-sm text-destructive transition-colors hover:bg-destructive/10"
+              >
+                <LogOut className="h-4 w-4" />
+                Sign out
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  )
+}

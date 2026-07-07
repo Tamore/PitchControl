@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-carbon: var(--carbon);
+  --color-pitch: var(--pitch);
+  --color-pitch-green: var(--pitch-green);
+  --color-electric: var(--electric);
+  --color-gold: var(--gold);
+  
+  --color-agent-director: var(--agent-director);
+  --color-agent-ticket: var(--agent-ticket);
+  --color-agent-crowd: var(--agent-crowd);
+  --color-agent-broadcast: var(--agent-broadcast);
+  --color-agent-guardian: var(--agent-guardian);
+  --color-agent-ops: var(--agent-ops);
+  --color-agent-eco: var(--agent-eco);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 10px);
+}
+
+/* Dark = default (Command Center / broadcast look) */
+:root {
+  color-scheme: dark;
+  --radius: 0.5rem;
+
+  --electric: #3B82F6;
+  --gold: #F4C542;
+  --carbon: #121212;
+  --pitch: #0A0A0A;
+  --pitch-green: #22C55E;
+
+  --agent-director: #F4C542;
+  --agent-ticket: #3B82F6;
+  --agent-crowd: #F97316;
+  --agent-broadcast: #A855F7;
+  --agent-guardian: #06B6D4;
+  --agent-ops: #64748B;
+  --agent-eco: #22C55E;
+
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+  --card: #121212;
+  --card-foreground: #FFFFFF;
+  --popover: #121212;
+  --popover-foreground: #FFFFFF;
+  --primary: var(--electric);
+  --primary-foreground: #FFFFFF;
+  --secondary: #1F2937;
+  --secondary-foreground: #FFFFFF;
+  --muted: #1F2937;
+  --muted-foreground: #9CA3AF;
+  --accent: var(--gold);
+  --accent-foreground: #000000;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #27272A;
+  --input: #27272A;
+  --ring: var(--electric);
+}
+
+/* Light = FanHub portal */
+.light {
+  color-scheme: light;
+
+  --electric: #3B82F6;
+  --gold: #F4C542;
+  --carbon: #FAFAFA;
+  --pitch: #FFFFFF;
+  --pitch-green: #16A34A;
+
+  --agent-director: #D97706;
+  --agent-ticket: #2563EB;
+  --agent-crowd: #EA580C;
+  --agent-broadcast: #9333EA;
+  --agent-guardian: #0891B2;
+  --agent-ops: #475569;
+  --agent-eco: #16A34A;
+
+  --background: #F3F4F6;
+  --foreground: #0A0A0A;
+  --card: #FFFFFF;
+  --card-foreground: #0A0A0A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A0A0A;
+  --primary: var(--electric);
+  --primary-foreground: #FFFFFF;
+  --secondary: #E5E7EB;
+  --secondary-foreground: #111827;
+  --muted: #F3F4F6;
+  --muted-foreground: #6B7280;
+  --accent: var(--gold);
+  --accent-foreground: #000000;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #D1D5DB;
+  --input: #D1D5DB;
+  --ring: var(--electric);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .text-glow-electric {
+    text-shadow: 0 0 24px color-mix(in srgb, var(--electric) 55%, transparent);
+  }
+  .glow-electric {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--electric) 30%, transparent),
+      0 0 32px -6px color-mix(in srgb, var(--electric) 45%, transparent);
+  }
+  .grid-tactical {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker 40s linear infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  70% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.4s cubic-bezier(0.25, 0.6, 0.35, 1) infinite;
+}
+
+@keyframes sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-sweep {
+  animation: sweep 6s linear infinite;
+}
