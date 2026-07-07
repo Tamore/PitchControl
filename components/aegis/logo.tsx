@@ -20,10 +20,10 @@ export function AegisLogo({ className }: { className?: string }) {
       </span>
       <span className="flex flex-col leading-none">
         <span className="font-display text-sm font-bold tracking-tight text-foreground">
-          AEGIS
+          PITCH
         </span>
         <span className="text-[0.6rem] font-medium uppercase tracking-[0.28em] text-muted-foreground">
-          StadiumOS
+          CONTROL
         </span>
       </span>
     </div>

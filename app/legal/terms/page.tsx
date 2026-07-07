@@ -2,15 +2,15 @@ import type { Metadata } from 'next'
 import { LegalLayout, type LegalSection } from '@/components/legal/legal-layout'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — Aegis StadiumOS',
-  description: 'The terms governing your use of the Aegis StadiumOS FanHub and Command Center.',
+  title: 'Terms of Service — PitchControl',
+  description: 'The terms governing your use of the PitchControl FanHub and Command Center.',
 }
 
 const SECTIONS: LegalSection[] = [
   {
     heading: 'Acceptance of terms',
     body: [
-      'By accessing FanHub or the Command Center you agree to these terms. If you are using Aegis StadiumOS on behalf of an organization, you represent that you have authority to bind that organization.',
+      'By accessing FanHub or the Command Center you agree to these terms. If you are using PitchControl on behalf of an organization, you represent that you have authority to bind that organization.',
     ],
   },
   {
@@ -29,7 +29,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: 'Tickets and entry',
     body: [
-      'Entry is subject to venue rules, staggered entry windows and safety directives issued in real time. Aegis StadiumOS may adjust recommended gates, routes and timings to protect crowd safety.',
+      'Entry is subject to venue rules, staggered entry windows and safety directives issued in real time. PitchControl may adjust recommended gates, routes and timings to protect crowd safety.',
     ],
   },
   {
@@ -41,7 +41,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: 'Disclaimers and liability',
     body: [
-      'This is a concept product provided for demonstration. It is offered "as is" without warranties. To the extent permitted by law, Aegis StadiumOS is not liable for indirect or consequential damages arising from use of the platform.',
+      'This is a concept product provided for demonstration. It is offered "as is" without warranties. To the extent permitted by law, PitchControl is not liable for indirect or consequential damages arising from use of the platform.',
     ],
   },
   {
@@ -58,7 +58,7 @@ export default function TermsPage() {
       active="/legal/terms"
       title="Terms of Service"
       updated="July 1, 2026"
-      intro="These terms govern your use of Aegis StadiumOS, including the fan-facing FanHub and the operator-facing Command Center."
+      intro="These terms govern your use of PitchControl, including the fan-facing FanHub and the operator-facing Command Center."
       sections={SECTIONS}
     />
   )

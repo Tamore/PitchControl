@@ -17,7 +17,7 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
-  title: 'Aegis StadiumOS — Agentic AI Workforce for FIFA World Cup 2026',
+  title: 'PitchControl — Agentic AI Workforce for FIFA World Cup 2026',
   description:
     'An enterprise AI operating system where specialized agents collaborate in real time to run FIFA World Cup 2026 stadium operations. Built for fans and mission control.',
   generator: 'v0.app',

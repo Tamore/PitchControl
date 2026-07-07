@@ -1,9 +1,9 @@
-# 🛡️ Aegis StadiumOS
+# 🛡️ PitchControl
 **Google Hack2Skill PromptWars Submission**
 
 ## 1. Chosen Vertical
 **AI Operations / Stadium Management (FIFA World Cup 2026)**
-Aegis StadiumOS is designed to manage the chaos and operational complexity of a mega-event like the FIFA World Cup. It provides a cohesive, multi-agent AI ecosystem that replaces traditional static dashboards with proactive intelligence.
+PitchControl is designed to manage the chaos and operational complexity of a mega-event like the FIFA World Cup. It provides a cohesive, multi-agent AI ecosystem that replaces traditional static dashboards with proactive intelligence.
 
 ## 2. Approach and Logic
 Our core approach was to build a **Multi-Agent Orchestration System** rather than a single chatbot. We employed a "Shared Memory Context" and "Event-Driven" architecture.

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { LegalLayout, type LegalSection } from '@/components/legal/legal-layout'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — Aegis StadiumOS',
-  description: 'How Aegis StadiumOS collects, uses and protects fan data across FIFA World Cup 2026 operations.',
+  title: 'Privacy Policy — PitchControl',
+  description: 'How PitchControl collects, uses and protects fan data across FIFA World Cup 2026 operations.',
 }
 
 const SECTIONS: LegalSection[] = [
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
       active="/legal/privacy"
       title="Privacy Policy"
       updated="July 1, 2026"
-      intro="Your trust is the foundation of Aegis StadiumOS. This policy explains what data we collect, how our AI workforce uses it, and the controls you have over it."
+      intro="Your trust is the foundation of PitchControl. This policy explains what data we collect, how our AI workforce uses it, and the controls you have over it."
       sections={SECTIONS}
     />
   )

@@ -102,7 +102,7 @@ export function LegalLayout({
 
           <div className="mt-12 border-t border-border/60 pt-6 text-sm text-muted-foreground">
             Questions about this document? Contact{' '}
-            <span className="font-medium text-foreground">legal@aegis-stadiumos.example</span>.
+            <span className="font-medium text-foreground">legal@pitchcontrol.example</span>.
           </div>
         </article>
       </div>

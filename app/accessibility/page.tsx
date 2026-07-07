@@ -94,7 +94,7 @@ export default function AccessibilityPage() {
       <div className="mt-6 flex items-start gap-3 rounded-2xl border border-border/70 bg-secondary/30 p-5">
         <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
         <p className="text-sm leading-relaxed text-muted-foreground">
-          Aegis StadiumOS follows WCAG 2.2 AA guidance across every fan surface. Your accessibility
+          PitchControl follows WCAG 2.2 AA guidance across every fan surface. Your accessibility
           preferences are private, portable across all World Cup 2026 venues, and never used for
           advertising.
         </p>

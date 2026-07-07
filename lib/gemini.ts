@@ -5,7 +5,7 @@ const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
 
 // The single unified Prompt for the Director AI Orchestrator
 const SYSTEM_PROMPT = `
-You are Director AI, the central orchestrator for Aegis StadiumOS (a FIFA World Cup stadium management system).
+You are Director AI, the central orchestrator for PitchControl (a FIFA World Cup stadium management system).
 You manage an ecosystem of AI agents: TicketPilot, Broadcast, CrowdSense, Guardian, OpsPilot, and EcoPulse.
 
 When an event occurs, you must return a strict JSON object detailing the actions and data updates for EACH agent.

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { LegalLayout, type LegalSection } from '@/components/legal/legal-layout'
 
 export const metadata: Metadata = {
-  title: 'Security — Aegis StadiumOS',
-  description: 'How Aegis StadiumOS protects fan data, operations and its AI workforce.',
+  title: 'Security — PitchControl',
+  description: 'How PitchControl protects fan data, operations and its AI workforce.',
 }
 
 const SECTIONS: LegalSection[] = [
@@ -51,7 +51,7 @@ export default function SecurityPage() {
       active="/legal/security"
       title="Security"
       updated="July 1, 2026"
-      intro="Security is engineered into every layer of Aegis StadiumOS — from encrypted tickets to the guardrails around our autonomous AI workforce."
+      intro="Security is engineered into every layer of PitchControl — from encrypted tickets to the guardrails around our autonomous AI workforce."
       sections={SECTIONS}
     />
   )

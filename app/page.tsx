@@ -92,7 +92,7 @@ export default function LandingPage() {
               variants={fadeUp}
               className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty"
             >
-              Aegis StadiumOS is not a chatbot. It is an enterprise AI operating system where seven
+              PitchControl is not a chatbot. It is an enterprise AI operating system where seven
               specialized agents collaborate in real time through a shared event bus and shared memory
               to run World Cup match-day operations — from the turnstile to the tactical room.
             </motion.p>
@@ -319,7 +319,7 @@ export default function LandingPage() {
             <div className="max-w-md">
               <AegisLogo />
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Aegis StadiumOS · Agentic AI for live venue operations. A concept product built for
+                PitchControl · Agentic AI for live venue operations. A concept product built for
                 the Google Hack2Skill PromptWars hackathon.
               </p>
             </div>
@@ -331,7 +331,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="mt-10 border-t border-border/60 pt-6 text-xs text-muted-foreground">
-            © 2026 Aegis StadiumOS. Not affiliated with FIFA. Demonstration interface.
+            © 2026 PitchControl. Not affiliated with FIFA. Demonstration interface.
           </div>
         </div>
       </footer>
