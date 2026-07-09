@@ -5,11 +5,6 @@ import { AccountMenu } from '@/components/aegis/account-menu'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-const NAV = [
-  { label: 'Global Tournament', href: '/' },
-  { label: 'Match Experience', href: '/fanhub' },
-  { label: 'Stadium Operations', href: '/command' },
-]
 
 export function PortalNav({
   label,
@@ -33,26 +28,7 @@ export function PortalNav({
           </Link>
           <AegisLogo />
           
-          <nav className="hidden items-center gap-7 md:flex ml-4">
-            {NAV.map((item) => {
-              const isActive = (label === 'FanHub' && item.href === '/fanhub') || 
-                               (label === 'Command Center' && item.href === '/command') ||
-                               (label !== 'FanHub' && label !== 'Command Center' && item.href === '/')
-                               
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "text-sm font-medium transition-colors hover:text-foreground",
-                    isActive ? "text-primary" : "text-muted-foreground"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              )
-            })}
-          </nav>
+          {/* Lateral navigation removed to enforce Aegis Gateway authentication */}
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           {/* CTA removed since main NAV links handle routing now */}

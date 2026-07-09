@@ -28,7 +28,7 @@ export default function LandingPage() {
 
       <main className="flex-1 min-h-0 w-full max-w-[1600px] mx-auto grid lg:grid-cols-2 relative z-10">
         {/* Left Side: Login Card */}
-        <div className="flex items-center justify-center p-4 relative z-10">
+        <div className="flex items-center justify-center p-4 relative z-10 w-full">
           <motion.div
             initial="hidden"
             animate="show"
@@ -36,27 +36,27 @@ export default function LandingPage() {
             className="w-full max-w-[400px] xl:max-w-md"
           >
           {/* Login Card */}
-          <motion.div variants={fadeUp} className="border border-border/80 bg-card/60 backdrop-blur-2xl shadow-2xl p-6 rounded-3xl">
-            <div className="flex flex-col items-center text-center mb-6">
+          <motion.div variants={fadeUp} className="border border-border/80 bg-card/60 backdrop-blur-2xl shadow-2xl p-5 rounded-3xl">
+            <div className="flex flex-col items-center text-center mb-4">
               <AegisLogo />
-              <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-widest text-primary">
+              <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-widest text-primary">
                 <Fingerprint className="h-3.5 w-3.5" />
                 Aegis Identity Gateway
               </div>
-              <h1 className="mt-4 font-display text-2xl font-bold tracking-tight">
+              <h1 className="mt-2.5 font-display text-xl sm:text-2xl font-bold tracking-tight">
                 Welcome to PitchControl
               </h1>
-              <p className="mt-2 text-sm text-muted-foreground">
+              <p className="mt-1 text-xs sm:text-sm text-muted-foreground leading-tight">
                 Authenticate your identity to securely access the FIFA World Cup 2026 operating system.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <AuthGateway />
             </div>
             
-            <div className="mt-8 pt-6 border-t border-border/50 text-center">
-              <p className="text-[0.65rem] text-muted-foreground uppercase tracking-widest">
+            <div className="mt-4 pt-4 border-t border-border/50 text-center">
+              <p className="text-[0.6rem] text-muted-foreground uppercase tracking-widest">
                 Protected by Google Cloud Security
               </p>
             </div>
