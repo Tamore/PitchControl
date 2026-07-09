@@ -5,6 +5,12 @@ import { AccountMenu } from '@/components/aegis/account-menu'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
+const NAV = [
+  { label: 'Global Tournament', href: '/' },
+  { label: 'Match Experience', href: '/fanhub' },
+  { label: 'Stadium Operations', href: '/command' },
+]
+
 export function PortalNav({
   label,
   cta,
@@ -26,20 +32,30 @@ export function PortalNav({
             <ArrowLeft className="h-4 w-4" />
           </Link>
           <AegisLogo />
-          <span className="hidden rounded-full border border-border/70 px-3 py-1 text-xs font-medium text-muted-foreground sm:inline-flex">
-            {label}
-          </span>
+          
+          <nav className="hidden items-center gap-7 md:flex ml-4">
+            {NAV.map((item) => {
+              const isActive = (label === 'FanHub' && item.href === '/fanhub') || 
+                               (label === 'Command Center' && item.href === '/command') ||
+                               (label !== 'FanHub' && label !== 'Command Center' && item.href === '/')
+                               
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "text-sm font-medium transition-colors hover:text-foreground",
+                    isActive ? "text-primary" : "text-muted-foreground"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
+          </nav>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
-          <Link
-            href={cta.href}
-            className={cn(
-              buttonVariants({ variant: 'outline', size: 'lg' }),
-              'hidden border-border bg-secondary/40 hover:bg-secondary sm:inline-flex',
-            )}
-          >
-            {cta.text}
-          </Link>
+          {/* CTA removed since main NAV links handle routing now */}
           {showAccount && <AccountMenu />}
         </div>
       </div>

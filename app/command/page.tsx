@@ -13,6 +13,7 @@ import {
   Zap,
   Gauge,
   Info,
+  ShieldCheck,
 } from 'lucide-react'
 import { PortalNav } from '@/components/aegis/portal-nav'
 import { HoloStadium } from '@/components/command/holo-stadium'
@@ -108,28 +109,64 @@ export default function CommandCenterPage() {
           ))}
         </div>
 
-        {/* MAIN GRID */}
+        {/* Holographic Stadium Hero */}
+        <Panel
+          title="Holographic Stadium · Live Crowd Heatmap"
+          className="mb-4"
+          action={
+            <span className="font-mono text-[0.65rem] tracking-widest text-muted-foreground">
+              UPDATED 0.8s AGO
+            </span>
+          }
+        >
+          <div className="relative overflow-hidden rounded-xl border border-border/60 bg-background/40 h-[40vh] lg:h-[55vh]">
+            <div className="pointer-events-none absolute inset-0 grid-tactical opacity-40" />
+            <div className="relative w-full h-full">
+              <HoloStadium />
+            </div>
+          </div>
+        </Panel>
+
+        {/* Secondary Dashboard Grid */}
         <div className="grid gap-4 xl:grid-cols-12">
-          {/* Left: stadium + weather + incidents */}
-          <div className="space-y-4 xl:col-span-8">
+          
+          {/* Column 1: Live Intelligence & Environment */}
+          <div className="xl:col-span-4 flex flex-col gap-4">
             <Panel
-              title="Holographic Stadium · Live Crowd Heatmap"
+              title="Incident Feed"
+              className="flex-1"
               action={
-                <span className="font-mono text-[0.65rem] tracking-widest text-muted-foreground">
-                  UPDATED 0.8s AGO
+                <span className="inline-flex items-center gap-1 text-[0.7rem] font-medium text-destructive">
+                  <AlertTriangle className="h-3.5 w-3.5" /> 1 active
                 </span>
               }
             >
-              <div className="relative overflow-hidden rounded-xl border border-border/60 bg-background/40">
-                <div className="pointer-events-none absolute inset-0 grid-tactical opacity-40" />
-                <div className="relative aspect-[16/10] w-full">
-                  <HoloStadium />
-                </div>
+              <div className="space-y-2.5">
+                {INCIDENTS.map((inc) => {
+                  const color =
+                    inc.level === 'high'
+                      ? 'bg-destructive'
+                      : inc.level === 'med'
+                        ? 'bg-accent'
+                        : 'bg-muted-foreground'
+                  return (
+                    <div key={inc.zone} className="flex gap-3">
+                      <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${color}`} />
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="truncate text-xs font-semibold">{inc.zone}</span>
+                          <span className="font-mono text-[0.65rem] text-muted-foreground">{inc.time}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground">{inc.msg}</p>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </Panel>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <Panel title="Match-Day Weather">
+            <Panel title="Match Environment">
+              <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <CloudRain className="h-10 w-10 text-primary" strokeWidth={1.5} />
@@ -147,136 +184,62 @@ export default function CommandCenterPage() {
                     </div>
                   </div>
                 </div>
-              </Panel>
-
-              <Panel
-                title="Incident Feed"
-                action={
-                  <span className="inline-flex items-center gap-1 text-[0.7rem] font-medium text-destructive">
-                    <AlertTriangle className="h-3.5 w-3.5" /> 1 active
-                  </span>
-                }
-              >
-                <div className="space-y-2.5">
-                  {INCIDENTS.map((inc) => {
-                    const color =
-                      inc.level === 'high'
-                        ? 'bg-destructive'
-                        : inc.level === 'med'
-                          ? 'bg-accent'
-                          : 'bg-muted-foreground'
-                    return (
-                      <div key={inc.zone} className="flex gap-3">
-                        <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${color}`} />
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center justify-between gap-2">
-                            <span className="truncate text-xs font-semibold">{inc.zone}</span>
-                            <span className="font-mono text-[0.65rem] text-muted-foreground">{inc.time}</span>
-                          </div>
-                          <p className="text-xs text-muted-foreground">{inc.msg}</p>
-                        </div>
-                      </div>
-                    )
-                  })}
+                
+                <div className="border-t border-border/50 pt-3 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="font-semibold text-foreground">Officials:</span>
+                    <span className="text-muted-foreground">Szymon Marciniak (POL)</span>
+                  </div>
+                  <span className="text-muted-foreground">VAR: Active</span>
                 </div>
-              </Panel>
-            </div>
+              </div>
+            </Panel>
           </div>
 
-          {/* Right: workforce panel */}
+          {/* Column 2: Agent Operations */}
           <div className="xl:col-span-4 flex flex-col gap-4">
-            <Panel title="AI Workforce Dynamics">
-              <Orbit />
-            </Panel>
             <Panel title="Agent Status" className="flex-1">
               <WorkforcePanel />
             </Panel>
+            <Panel title="AI Workforce Dynamics">
+              <div className="h-[180px] w-full flex items-center justify-center">
+                <Orbit />
+              </div>
+            </Panel>
           </div>
-        </div>
 
-        {/* Director console + Timeline */}
-        <div className="grid gap-4 xl:grid-cols-12">
-          <div className="xl:col-span-7">
-            <DirectorConsole />
+          {/* Column 3: Director & Explainability */}
+          <div className="xl:col-span-4 flex flex-col gap-4">
+            <div className="flex-1">
+              <DirectorConsole />
+            </div>
+            
+            <Panel
+              title="AI Explainability"
+              action={<Info className="h-4 w-4 text-muted-foreground" />}
+            >
+              <div className="rounded-xl border border-border/60 bg-background/40 p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-display text-sm font-semibold">
+                    Gate Rebalance
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
+                    <Gauge className="h-3.5 w-3.5" /> 97% confidence
+                  </span>
+                </div>
+                <div className="space-y-3 text-xs text-foreground/90 leading-relaxed">
+                  <div>
+                    <span className="font-medium text-primary">Reasoning:</span> North density trending to 92% while West gates are at 62%.
+                  </div>
+                  <div>
+                    <span className="font-medium text-primary">Action:</span> Open 3 covered West entrances, deploy 12 stewards.
+                  </div>
+                </div>
+              </div>
+            </Panel>
           </div>
-          <div className="xl:col-span-5">
-            <MissionTimeline />
-          </div>
-        </div>
 
-        {/* Explainability + Sustainability */}
-        <div className="grid gap-4 xl:grid-cols-12">
-          <Panel
-            title="AI Explainability"
-            className="xl:col-span-7"
-            action={<Info className="h-4 w-4 text-muted-foreground" />}
-          >
-            <div className="rounded-xl border border-border/60 bg-background/40 p-4">
-              <div className="flex items-center justify-between">
-                <span className="font-display text-sm font-semibold">
-                  Recommendation · Gate rebalance
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
-                  <Gauge className="h-3.5 w-3.5" /> 97% confidence
-                </span>
-              </div>
-              <div className="mt-4 grid gap-4 sm:grid-cols-3">
-                <div>
-                  <div className="mb-1 text-[0.65rem] font-medium uppercase tracking-widest text-muted-foreground">
-                    Reasoning
-                  </div>
-                  <p className="text-xs leading-relaxed text-foreground/90">
-                    North density trending to 92% while covered West gates sit at 62%. Rain arrival
-                    accelerates inflow.
-                  </p>
-                </div>
-                <div>
-                  <div className="mb-1 text-[0.65rem] font-medium uppercase tracking-widest text-muted-foreground">
-                    Data Sources
-                  </div>
-                  <ul className="space-y-1 text-xs text-foreground/90">
-                    <li>· LiDAR crowd sensors</li>
-                    <li>· Turnstile telemetry</li>
-                    <li>· Weather radar feed</li>
-                  </ul>
-                </div>
-                <div>
-                  <div className="mb-1 text-[0.65rem] font-medium uppercase tracking-widest text-muted-foreground">
-                    Recommended Action
-                  </div>
-                  <p className="text-xs leading-relaxed text-foreground/90">
-                    Open 3 covered West entrances, deploy 12 stewards to Gate 4, advise sheltered
-                    routing to 48k fans.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Panel>
-
-          <Panel title="Sustainability · EcoPulse AI" className="xl:col-span-5">
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { icon: Zap, v: '−8%', l: 'Energy load', tone: 'text-primary' },
-                { icon: Droplets, v: '94%', l: 'Water reuse', tone: 'text-primary' },
-                { icon: Leaf, v: '72%', l: 'Waste diverted', tone: 'text-[color:var(--pitch-green)]' },
-              ].map((m) => (
-                <div key={m.l} className="rounded-xl border border-border/60 bg-background/40 p-3 text-center">
-                  <m.icon className={`mx-auto h-5 w-5 ${m.tone}`} />
-                  <div className="mt-2 font-display text-xl font-bold">{m.v}</div>
-                  <div className="text-[0.65rem] text-muted-foreground">{m.l}</div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-3 rounded-xl border border-border/60 bg-background/40 p-3">
-              <div className="mb-1 flex justify-between text-xs">
-                <span className="text-muted-foreground">Carbon budget vs. target</span>
-                <span className="font-medium text-[color:var(--agent-eco)]">On track</span>
-              </div>
-              <div className="h-2 overflow-hidden rounded-full bg-secondary">
-                <div className="h-full rounded-full bg-[color:var(--agent-eco)]" style={{ width: '84%' }} />
-              </div>
-            </div>
-          </Panel>
         </div>
       </main>
 

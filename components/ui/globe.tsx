@@ -32,7 +32,7 @@ export function Globe({ className, autoFocus = false }: { className?: string, au
   }));
 
   return (
-    <div className={`relative mx-auto aspect-square w-full max-w-[500px] flex items-center justify-center ${className || ''}`}>
+    <div className={`relative mx-auto aspect-square w-full flex items-center justify-center ${className || ''}`}>
       <Globe3D
         markers={markers}
         config={{

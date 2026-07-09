@@ -4,142 +4,108 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
-  ArrowUpRight,
-  Activity,
-  Network,
   ShieldCheck,
-  Sparkles,
-  Cpu,
-  Radio,
+  User,
+  Fingerprint,
 } from 'lucide-react'
-import { LandingNav } from '@/components/landing/landing-nav'
 import { AegisLogo } from '@/components/aegis/logo'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { AGENTS } from '@/lib/aegis'
 import { Globe } from '@/components/ui/globe'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
-
-// Ticker removed in favor of global BroadcastStrip
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <LandingNav />
+    <div className="h-[calc(100vh-40px)] bg-background text-foreground overflow-hidden flex flex-col relative">
+      {/* Background Elements */}
+      <div className="pointer-events-none absolute inset-0 grid-tactical opacity-30 z-0" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-primary/5 blur-[120px] z-0" />
 
-      {/* HERO */}
-      <section className="relative overflow-hidden pt-16">
-        <div className="pointer-events-none absolute inset-0 grid-tactical opacity-40" />
-        <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
-        <div className="pointer-events-none absolute bottom-0 right-0 h-[380px] w-[380px] rounded-full bg-accent/10 blur-[110px]" />
-
-        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-16 lg:px-8 lg:pt-24 flex flex-col lg:flex-row items-center gap-12">
+      <main className="flex-1 min-h-0 w-full max-w-[1600px] mx-auto grid lg:grid-cols-2 relative z-10">
+        {/* Left Side: Login Card */}
+        <div className="flex items-center justify-center p-4 relative z-10">
           <motion.div
             initial="hidden"
             animate="show"
-            variants={{ show: { transition: { staggerChildren: 0.09 } } }}
-            className="max-w-3xl flex-1 z-10"
+            variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+            className="w-full max-w-[400px] xl:max-w-md"
           >
-            <motion.div variants={fadeUp} className="mb-6 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                <Sparkles className="h-3.5 w-3.5" />
-                Agentic AI Workforce
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border/70 px-3 py-1 text-xs text-muted-foreground">
-                FIFA World Cup 2026 · Google Cloud
-              </span>
-            </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="font-display text-5xl font-bold leading-[0.95] tracking-tight text-balance sm:text-6xl lg:text-7xl"
-            >
-              The operating system that
-              <span className="text-primary text-glow-electric"> runs the stadium.</span>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty"
-            >
-              PitchControl is not a chatbot. It is an enterprise AI operating system where seven
-              specialized agents collaborate in real time through a shared event bus and shared memory
-              to run World Cup match-day operations — from the turnstile to the tactical room.
-            </motion.p>
-
-            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
-              <Link
-                href="/command"
-                className={cn(
-                  buttonVariants({ size: 'lg' }),
-                  'group h-12 gap-2 bg-primary px-6 text-base font-semibold text-primary-foreground hover:bg-primary/90',
-                )}
-              >
-                Enter Command Center
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/fanhub"
-                className={cn(
-                  buttonVariants({ variant: 'outline', size: 'lg' }),
-                  'h-12 gap-2 border-border bg-secondary/40 px-6 text-base text-foreground hover:bg-secondary',
-                )}
-              >
-                Open FanHub
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="mt-12 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4"
-            >
-              {[
-                { k: '7', l: 'Autonomous agents' },
-                { k: '<50ms', l: 'Event bus latency' },
-                { k: '61k', l: 'Fans orchestrated' },
-                { k: '24/7', l: 'Shared memory' },
-              ].map((s) => (
-                <div key={s.l}>
-                  <div className="font-display text-2xl font-bold text-foreground">{s.k}</div>
-                  <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-                </div>
-              ))}
-            </motion.div>
-          </motion.div>
-          <div className="flex-1 w-full flex items-center justify-center relative z-0">
-             <Globe className="lg:scale-125" />
-          </div>
-        </div>
-
-      </section>
-
-      {/* TRUST / FOOTER */}
-      <footer id="trust" className="border-t border-border/60 bg-carbon/40">
-        <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <div className="max-w-md">
+          {/* Login Card */}
+          <motion.div variants={fadeUp} className="border border-border/80 bg-card/60 backdrop-blur-2xl shadow-2xl p-6 rounded-3xl">
+            <div className="flex flex-col items-center text-center mb-6">
               <AegisLogo />
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                PitchControl · Agentic AI for live venue operations. A concept product built for
-                the Google Hack2Skill PromptWars hackathon.
+              <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-widest text-primary">
+                <Fingerprint className="h-3.5 w-3.5" />
+                Aegis Identity Gateway
+              </div>
+              <h1 className="mt-4 font-display text-2xl font-bold tracking-tight">
+                Welcome to PitchControl
+              </h1>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Authenticate your identity to securely access the FIFA World Cup 2026 operating system.
               </p>
             </div>
-            <div className="flex flex-wrap gap-x-10 gap-y-4 text-sm text-muted-foreground">
-              <Link href="/fanhub" className="hover:text-foreground">FanHub</Link>
-              <Link href="/command" className="hover:text-foreground">Command Center</Link>
-              <a href="#platform" className="hover:text-foreground">Platform</a>
-              <a href="#workforce" className="hover:text-foreground">AI Workforce</a>
+
+            <div className="space-y-4">
+              {/* Fan Login */}
+              <motion.div variants={fadeUp}>
+                <Link
+                  href="/fanhub"
+                  className="group flex items-center p-4 rounded-2xl border border-border/60 bg-background/50 hover:bg-secondary/40 hover:border-border transition-all"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-foreground">
+                    <User className="h-5 w-5" />
+                  </div>
+                  <div className="ml-4 flex-1">
+                    <div className="font-semibold text-sm">Match Attendee</div>
+                    <div className="text-xs text-muted-foreground">Access your tickets and FanHub</div>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                </Link>
+              </motion.div>
+
+              {/* Staff Login */}
+              <motion.div variants={fadeUp}>
+                <Link
+                  href="/command"
+                  className="group flex items-center p-4 rounded-2xl border border-primary/30 bg-primary/[0.04] hover:bg-primary/[0.08] hover:border-primary/50 transition-all"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <div className="ml-4 flex-1">
+                    <div className="font-semibold text-sm text-foreground">Stadium Operations</div>
+                    <div className="text-xs text-primary/80">Command Center & Workforce</div>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
+                </Link>
+              </motion.div>
             </div>
-          </div>
-          <div className="mt-10 border-t border-border/60 pt-6 text-xs text-muted-foreground">
-            © 2026 PitchControl. Not affiliated with FIFA. Demonstration interface.
+            
+            <div className="mt-8 pt-6 border-t border-border/50 text-center">
+              <p className="text-[0.65rem] text-muted-foreground uppercase tracking-widest">
+                Protected by Google Cloud Security
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+        </div>
+
+        {/* Right Side: 3D Globe */}
+        <div className="relative hidden lg:block min-h-0 pointer-events-none">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[120vh] w-[120vh] opacity-90">
+            <Globe autoFocus={false} />
           </div>
         </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="relative z-50 w-full py-4 text-center text-xs text-muted-foreground shrink-0 bg-background border-t border-border/40">
+        © 2026 PitchControl. Not affiliated with FIFA. Demonstration interface.
       </footer>
     </div>
   )

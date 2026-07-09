@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export function SeatMap({ section = '112', row = 'F', seat = '14' }) {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center rounded-3xl border border-border/80 bg-carbon p-8 overflow-hidden h-full min-h-[500px]">
+    <div className="relative flex w-full h-full flex-col items-center justify-center rounded-3xl border border-border/80 bg-carbon p-4 md:p-8 overflow-hidden">
       {/* Background grid */}
       <div className="absolute inset-0 grid-tactical opacity-20 pointer-events-none" />
       

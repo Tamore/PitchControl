@@ -12,6 +12,8 @@ import {
   Accessibility,
   ShieldCheck,
   Sparkles,
+  CloudSun,
+  ThermometerSun,
   QrCode,
   ChevronRight,
   CheckCircle2,
@@ -93,82 +95,21 @@ export default function FanHubPage() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-12">
-          {/* Main Hero Column */}
-          <div className="lg:col-span-8 flex flex-col gap-6">
-            
-            {/* 3D Seat Map Hero */}
+          {/* Main Hero: 3D Seat Map */}
+          <div className="lg:col-span-12">
             <motion.div 
               initial={{ opacity: 0, scale: 0.98 }} 
               animate={{ opacity: 1, scale: 1 }} 
               transition={{ duration: 0.6 }}
-              className="w-full"
+              className="w-full h-[50vh] lg:h-[60vh]"
             >
               <SeatMap section="112" row="F" seat="14" />
             </motion.div>
-
-            {/* Programmatic Globe Focus */}
-            <Card i={1} className="relative overflow-hidden p-0 h-[260px] flex flex-col md:flex-row items-center border-border/60">
-              <div className="absolute inset-0 grid-tactical opacity-20 pointer-events-none" />
-              <div className="relative z-10 p-8 flex-1">
-                <SectionLabel icon={MapPin}>Global Connection</SectionLabel>
-                <h2 className="font-display text-3xl font-bold mt-2">Argentina vs Brazil</h2>
-                <p className="mt-3 text-sm text-muted-foreground max-w-sm">
-                  Tracking incoming fan flights from Buenos Aires and Brasília. The 3D globe autonomously targets the playing nations based on match data.
-                </p>
-              </div>
-              <div className="relative w-full md:w-[360px] h-[360px] flex-shrink-0 -mr-16">
-                {/* Globe positioned and scaled to look like it's peeking from the side */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150">
-                  <Globe autoFocus={true} />
-                </div>
-              </div>
-            </Card>
-
-            {/* Translation & Access */}
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Broadcast Translation */}
-              <Card i={2}>
-                <SectionLabel icon={Languages}>Broadcast AI</SectionLabel>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Real-time announcements translated.
-                </p>
-                <div className="rounded-xl border border-border bg-secondary/30 p-4">
-                  <div className="flex items-center justify-between mb-3 border-b border-border/50 pb-2">
-                    <span className="text-[0.65rem] font-bold tracking-widest text-muted-foreground uppercase">Now speaking: English</span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-[color:var(--agent-broadcast)]/15 px-2 py-0.5 text-[0.6rem] font-medium text-[color:var(--agent-broadcast)]">
-                      <CheckCircle2 className="h-3 w-3" /> AI Generated
-                    </span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="text-sm font-semibold text-foreground">
-                      "Please proceed to the nearest exit in an orderly fashion."
-                    </div>
-                    <div className="grid grid-cols-1 gap-2 text-xs">
-                      <div className="text-muted-foreground"><span className="font-semibold text-foreground">ES:</span> Por favor, diríjase a la salida...</div>
-                      <div className="text-muted-foreground"><span className="font-semibold text-foreground">PT:</span> Por favor, dirija-se à saída...</div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Guardian accessibility */}
-              <Card i={3} className="border-primary/30 bg-primary/[0.04]">
-                <SectionLabel icon={Accessibility}>Guardian AI</SectionLabel>
-                <p className="text-sm text-muted-foreground">
-                  A step-free route to Section 112 is verified and clear. Assistance staff are on standby at Gate C.
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-primary">
-                  <ShieldCheck className="h-4 w-4" /> Care plan active
-                </div>
-              </Card>
-            </div>
           </div>
 
-          {/* Side Column (Ticket, Route, Transit) */}
+          {/* Column 1: Identity & Access */}
           <div className="lg:col-span-4 flex flex-col gap-6">
-            
-            {/* Digital ticket */}
-            <Card i={4} className="bg-gradient-to-br from-card to-secondary/20">
+            <Card i={1} className="bg-gradient-to-br from-card to-secondary/20 flex-1">
               <SectionLabel icon={Ticket}>Digital Ticket</SectionLabel>
               <h2 className="font-display text-2xl font-bold">Priya Sharma</h2>
               
@@ -183,9 +124,11 @@ export default function FanHubPage() {
                 <CheckCircle2 className="h-4 w-4" /> Verified by TicketPilot AI
               </div>
             </Card>
+          </div>
 
-            {/* Best entrance */}
-            <Card i={5}>
+          {/* Column 2: Navigation & Safety */}
+          <div className="lg:col-span-4 flex flex-col gap-6">
+            <Card i={2}>
               <SectionLabel icon={DoorOpen}>Best Entrance</SectionLabel>
               <div className="flex items-baseline gap-2">
                 <span className="font-display text-4xl font-bold">Gate C</span>
@@ -202,8 +145,20 @@ export default function FanHubPage() {
               </button>
             </Card>
 
-            {/* Transport */}
-            <Card i={6}>
+            <Card i={3} className="border-primary/30 bg-primary/[0.04] flex-1">
+              <SectionLabel icon={Accessibility}>Guardian AI</SectionLabel>
+              <p className="text-sm text-muted-foreground">
+                A step-free route to Section 112 is verified and clear. Assistance staff are on standby at Gate C.
+              </p>
+              <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-primary">
+                <ShieldCheck className="h-4 w-4" /> Care plan active
+              </div>
+            </Card>
+          </div>
+
+          {/* Column 3: Live Environment & Intel */}
+          <div className="lg:col-span-4 flex flex-col gap-6">
+            <Card i={4}>
               <SectionLabel icon={Train}>Transport Status</SectionLabel>
               <div className="space-y-3">
                 {[
@@ -228,29 +183,25 @@ export default function FanHubPage() {
               </div>
             </Card>
 
-            {/* Broadcast notifications */}
-            <Card i={7}>
-              <SectionLabel icon={Bell}>Live Alerts</SectionLabel>
-              <div className="space-y-3">
-                {notifications.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No new alerts. Standing by.</p>
-                ) : (
-                  notifications.map((n, idx) => (
-                    <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} key={idx} className="flex gap-3">
-                      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent" />
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold">Broadcast</span>
-                          <span className="text-[0.65rem] text-muted-foreground">just now</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground">{n.notification}</p>
-                      </div>
-                    </motion.div>
-                  ))
-                )}
+            <Card i={5} className="bg-secondary/10 flex-1">
+              <SectionLabel icon={CloudSun}>Match Environment</SectionLabel>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <ThermometerSun className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-semibold text-foreground">24°C</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">Clear Skies, 65% Hum.</span>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-semibold text-foreground">Match Officials</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">Ref: S. Marciniak (POL)</span>
+                </div>
               </div>
             </Card>
-
           </div>
         </div>
       </main>

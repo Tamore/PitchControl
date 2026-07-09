@@ -6,10 +6,9 @@ import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const NAV = [
-  { label: 'Platform', href: '#platform' },
-  { label: 'AI Workforce', href: '#workforce' },
-  { label: 'Portals', href: '#portals' },
-  { label: 'Trust', href: '#trust' },
+  { label: 'Global Tournament', href: '/' },
+  { label: 'Match Experience', href: '/fanhub' },
+  { label: 'Stadium Operations', href: '/command' },
 ]
 
 export function LandingNav() {
@@ -20,13 +19,13 @@ export function LandingNav() {
           <AegisLogo />
           <nav className="hidden items-center gap-7 md:flex">
             {NAV.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
@@ -38,24 +37,6 @@ export function LandingNav() {
             </span>
             Live · FIFA WC 2026
           </span>
-          <Link
-            href="/fanhub"
-            className={cn(
-              buttonVariants({ variant: 'ghost', size: 'lg' }),
-              'hidden text-foreground hover:bg-secondary sm:inline-flex',
-            )}
-          >
-            FanHub
-          </Link>
-          <Link
-            href="/command"
-            className={cn(
-              buttonVariants({ size: 'lg' }),
-              'bg-primary font-semibold text-primary-foreground hover:bg-primary/90',
-            )}
-          >
-            Command Center
-          </Link>
         </div>
       </div>
     </header>
