@@ -11,6 +11,7 @@ import {
 import { AegisLogo } from '@/components/aegis/logo'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { AuthGateway } from '@/components/landing/auth-gateway'
 import { Globe } from '@/components/ui/globe'
 
 const fadeUp = {
@@ -51,39 +52,7 @@ export default function LandingPage() {
             </div>
 
             <div className="space-y-4">
-              {/* Fan Login */}
-              <motion.div variants={fadeUp}>
-                <Link
-                  href="/fanhub"
-                  className="group flex items-center p-4 rounded-2xl border border-border/60 bg-background/50 hover:bg-secondary/40 hover:border-border transition-all"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-foreground">
-                    <User className="h-5 w-5" />
-                  </div>
-                  <div className="ml-4 flex-1">
-                    <div className="font-semibold text-sm">Match Attendee</div>
-                    <div className="text-xs text-muted-foreground">Access your tickets and FanHub</div>
-                  </div>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
-                </Link>
-              </motion.div>
-
-              {/* Staff Login */}
-              <motion.div variants={fadeUp}>
-                <Link
-                  href="/command"
-                  className="group flex items-center p-4 rounded-2xl border border-primary/30 bg-primary/[0.04] hover:bg-primary/[0.08] hover:border-primary/50 transition-all"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
-                    <ShieldCheck className="h-5 w-5" />
-                  </div>
-                  <div className="ml-4 flex-1">
-                    <div className="font-semibold text-sm text-foreground">Stadium Operations</div>
-                    <div className="text-xs text-primary/80">Command Center & Workforce</div>
-                  </div>
-                  <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
-                </Link>
-              </motion.div>
+              <AuthGateway />
             </div>
             
             <div className="mt-8 pt-6 border-t border-border/50 text-center">
