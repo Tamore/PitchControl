@@ -23,6 +23,7 @@ import { KPIS } from '@/lib/aegis'
 import { FloatingDock } from '@/components/ui/floating-dock'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Orbit } from '@/components/ui/orbit'
+import { IncidentFeed } from '@/components/command/incident-card'
 
 function Panel({
   title,
@@ -58,16 +59,11 @@ export default function CommandCenterPage() {
       <Spotlight className="opacity-30" />
       <PortalNav label="Command Center" cta={{ href: '/fanhub', text: 'Open FanHub' }} />
 
-      {/* Broadcast Match Ticker */}
-      <div className="w-full bg-accent text-accent-foreground font-mono text-xs font-semibold py-1.5 overflow-hidden border-b border-border shadow-md">
-        <div className="whitespace-nowrap animate-ticker inline-block">
-          LIVE: 🇦🇷 ARG 2 - 1 BRA 🇧🇷 | Match Clock: 78:12 | Peak Crowd Noise: 114dB | Substitution 76' | Weather: 24°C Clear | Transit ETA: 7 min | ALL SYSTEMS NOMINAL
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          LIVE: 🇦🇷 ARG 2 - 1 BRA 🇧🇷 | Match Clock: 78:12 | Peak Crowd Noise: 114dB | Substitution 76' | Weather: 24°C Clear | Transit ETA: 7 min | ALL SYSTEMS NOMINAL
-        </div>
-      </div>
+      {/* Local broadcast ticker removed in favor of global BroadcastStrip */}
 
       <main className="relative z-10 mx-auto max-w-[1600px] space-y-4 px-5 py-6 lg:px-8 pb-32">
+        <IncidentFeed />
+        
         {/* header row */}
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>

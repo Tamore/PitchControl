@@ -50,47 +50,46 @@
   --radius-2xl: calc(var(--radius) + 10px);
 }
 
-/* Dark = default (Command Center / broadcast look) */
+/* Global Light Theme */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   --radius: 0.5rem;
 
   --electric: #3B82F6;
   --gold: #F4C542;
-  --carbon: #121212;
-  --pitch: #0A0A0A;
-  --pitch-green: #22C55E;
+  --carbon: #FAFAFA;
+  --pitch: #FFFFFF;
+  --pitch-green: #16A34A;
 
-  --agent-director: #F4C542;
-  --agent-ticket: #3B82F6;
-  --agent-crowd: #F97316;
-  --agent-broadcast: #A855F7;
-  --agent-guardian: #06B6D4;
-  --agent-ops: #64748B;
-  --agent-eco: #22C55E;
+  --agent-director: #D97706;
+  --agent-ticket: #2563EB;
+  --agent-crowd: #EA580C;
+  --agent-broadcast: #9333EA;
+  --agent-guardian: #0891B2;
+  --agent-ops: #475569;
+  --agent-eco: #16A34A;
 
-  --background: #0A0A0A;
-  --foreground: #FFFFFF;
-  --card: #121212;
-  --card-foreground: #FFFFFF;
-  --popover: #121212;
-  --popover-foreground: #FFFFFF;
+  --background: #F3F4F6;
+  --foreground: #0A0A0A;
+  --card: #FFFFFF;
+  --card-foreground: #0A0A0A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A0A0A;
   --primary: var(--electric);
   --primary-foreground: #FFFFFF;
-  --secondary: #1F2937;
-  --secondary-foreground: #FFFFFF;
-  --muted: #1F2937;
-  --muted-foreground: #9CA3AF;
+  --secondary: #E5E7EB;
+  --secondary-foreground: #111827;
+  --muted: #E5E7EB;
+  --muted-foreground: #6B7280;
   --accent: var(--gold);
   --accent-foreground: #000000;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --border: #27272A;
-  --input: #27272A;
+  --border: #D1D5DB;
+  --input: #D1D5DB;
   --ring: var(--electric);
 }
 
-/* Light = FanHub portal */
 .light {
   color-scheme: light;
 
@@ -118,7 +117,7 @@
   --primary-foreground: #FFFFFF;
   --secondary: #E5E7EB;
   --secondary-foreground: #111827;
-  --muted: #F3F4F6;
+  --muted: #E5E7EB;
   --muted-foreground: #6B7280;
   --accent: var(--gold);
   --accent-foreground: #000000;

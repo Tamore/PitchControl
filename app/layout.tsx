@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk, Manrope } from 'next/font/google'
 import './globals.css'
 import { StadiumProvider } from '@/components/providers/StadiumProvider'
+import { BroadcastStrip } from '@/components/ui/broadcast-strip'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -40,6 +41,7 @@ export default function RootLayout({
     <html lang="en" className={`${spaceGrotesk.variable} ${manrope.variable} bg-background`}>
       <body className="font-sans antialiased">
         <StadiumProvider>
+          <BroadcastStrip />
           {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </StadiumProvider>

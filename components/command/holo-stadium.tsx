@@ -29,10 +29,10 @@ const GATES = [
 ]
 
 function densityColor(v: number) {
-  // green (low) -> gold -> red (high)
+  // Electric Blue (low) -> Gold (busy) -> Red (congested)
   if (v > 0.82) return 'var(--signal)'
   if (v > 0.6) return 'var(--gold)'
-  return 'var(--pitch-green)'
+  return 'var(--electric)'
 }
 
 export function HoloStadium() {
@@ -111,11 +111,23 @@ export function HoloStadium() {
           <polygon points="400,240 400,140 480,150" fill="url(#sweepGrad)" />
         </g>
 
-        {/* gates */}
+        {/* gates and animated crowd flow */}
         {GATES.map((g) => {
           const isHot = g.label === crowdData.gate && crowdData.congestion > 70;
           return (
             <g key={g.id}>
+              {/* Particle flow lines for crowd */}
+              <motion.path
+                d={`M ${g.x + (g.x > 400 ? 50 : -50)} ${g.y + (g.y > 240 ? 50 : -50)} L ${g.x} ${g.y}`}
+                stroke={isHot ? 'var(--signal)' : 'var(--electric)'}
+                strokeWidth="2"
+                strokeDasharray="4 8"
+                initial={{ strokeDashoffset: 12 }}
+                animate={{ strokeDashoffset: 0 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                opacity="0.6"
+              />
+              
               {isHot && (
                 <circle cx={g.x} cy={g.y} r="10" fill="var(--signal)" opacity="0.5" className="animate-pulse-ring" style={{ transformOrigin: `${g.x}px ${g.y}px` }} />
               )}
@@ -132,7 +144,7 @@ export function HoloStadium() {
       {/* Legend */}
       <div className="absolute bottom-3 left-3 flex items-center gap-3 rounded-lg border border-border/60 bg-card/70 px-3 py-2 backdrop-blur">
         {[
-          { c: 'var(--pitch-green)', l: 'Clear' },
+          { c: 'var(--electric)', l: 'Clear' },
           { c: 'var(--gold)', l: 'Busy' },
           { c: 'var(--signal)', l: 'Congested' },
         ].map((x) => (

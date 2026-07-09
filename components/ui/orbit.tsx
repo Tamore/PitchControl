@@ -19,6 +19,50 @@ export function Orbit() {
       <div className="absolute h-[200px] w-[200px] rounded-full border border-border/40" />
       <div className="absolute h-[320px] w-[320px] rounded-full border border-border/20 border-dashed" />
 
+      {/* SVG Data Pulses */}
+      <svg className="absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 400 400">
+        <defs>
+          <linearGradient id="pulse-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="var(--electric)" stopOpacity="0" />
+            <stop offset="100%" stopColor="var(--electric)" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+        {ORBIT_AGENTS.map((agent) => {
+          // Calculate initial position based on offset (which is in degrees)
+          // 0 offset = top (x: 200, y: 200 - radius)
+          const rad = (agent.offset - 90) * (Math.PI / 180)
+          const x2 = 200 + agent.radius * Math.cos(rad)
+          const y2 = 200 + agent.radius * Math.sin(rad)
+          
+          return (
+            <motion.g
+              key={`pulse-${agent.id}`}
+              style={{ transformOrigin: '200px 200px' }}
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: agent.speed,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              <motion.line
+                x1="200"
+                y1="200"
+                x2="200"
+                y2={200 - agent.radius}
+                stroke="url(#pulse-grad)"
+                strokeWidth="2"
+                strokeDasharray="4 12"
+                initial={{ strokeDashoffset: 16 }}
+                animate={{ strokeDashoffset: 0 }}
+                transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }}
+                style={{ rotate: `${agent.offset}deg`, transformOrigin: '200px 200px' }}
+              />
+            </motion.g>
+          )
+        })}
+      </svg>
+
       {/* Center: Director AI */}
       <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-border bg-card shadow-lg shadow-black/50 glow-electric">
         <Crown className="h-7 w-7 text-[color:var(--agent-director)]" />
