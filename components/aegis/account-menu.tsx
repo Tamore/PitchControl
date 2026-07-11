@@ -61,8 +61,12 @@ export function AccountMenu({ persona = 'fan' }: { persona?: 'fan' | 'staff' }) 
           aria-expanded={open}
           className="inline-flex items-center gap-2 rounded-full border border-border/70 py-1 pl-1 pr-2.5 transition-colors hover:border-primary/40"
         >
-          <span className="relative h-7 w-7 overflow-hidden rounded-full border border-border bg-muted">
-            <Image src={activeProfile.avatar} alt={activeProfile.name} fill className="object-cover" sizes="28px" />
+          <span className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-border bg-muted">
+            {activeProfile.avatar ? (
+              <Image src={activeProfile.avatar} alt={activeProfile.name} fill className="object-cover" sizes="28px" />
+            ) : (
+              <User className="h-4 w-4 text-muted-foreground" />
+            )}
           </span>
           <span className="hidden text-xs font-medium text-foreground sm:inline">
             {activeProfile.name.split(' ')[0]}
@@ -84,8 +88,12 @@ export function AccountMenu({ persona = 'fan' }: { persona?: 'fan' | 'staff' }) 
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-3 rounded-xl p-2.5 transition-colors hover:bg-secondary"
               >
-                <span className="relative h-10 w-10 overflow-hidden rounded-full border border-border bg-muted">
-                  <Image src={activeProfile.avatar} alt={activeProfile.name} fill className="object-cover" sizes="40px" />
+                <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-border bg-muted">
+                  {activeProfile.avatar ? (
+                    <Image src={activeProfile.avatar} alt={activeProfile.name} fill className="object-cover" sizes="40px" />
+                  ) : (
+                    <User className="h-5 w-5 text-muted-foreground" />
+                  )}
                 </span>
                 <span className="min-w-0">
                   <span className="block truncate text-sm font-semibold text-popover-foreground">

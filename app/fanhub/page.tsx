@@ -25,7 +25,7 @@ import { Modal } from '@/components/ui/modal'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useStadium } from '@/components/providers/StadiumProvider'
-import { SeatMap } from '@/components/fanhub/seat-map'
+import { InteractiveSeatMap } from '@/components/booking/interactive-seat-map'
 import { DigitalTicket } from '@/components/fanhub/digital-ticket'
 import { Globe } from '@/components/ui/globe'
 
@@ -76,7 +76,7 @@ function SectionLabel({ icon: Icon, children }: { icon: any; children: React.Rea
 
 export default function FanHubPage() {
   const [routeOpen, setRouteOpen] = useState(false)
-  const { notifications } = useStadium()
+  const { notifications, walletTickets } = useStadium()
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20">
@@ -105,14 +105,14 @@ export default function FanHubPage() {
             </div>
 
             {/* Right side: 3D Seat Map with Pin */}
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7 relative">
               <motion.div 
                 initial={{ opacity: 0, scale: 0.98 }} 
                 animate={{ opacity: 1, scale: 1 }} 
                 transition={{ duration: 0.6 }}
-                className="w-full h-[50vh] lg:h-[60vh] min-h-[450px]"
+                className="absolute inset-0 min-h-[450px]"
               >
-                <SeatMap section="112" row="F" seat="14" />
+                <InteractiveSeatMap activeSection={walletTickets[0]?.section || '112'} readOnly />
               </motion.div>
             </div>
           </div>

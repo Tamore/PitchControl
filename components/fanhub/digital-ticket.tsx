@@ -3,8 +3,14 @@
 import { motion } from 'framer-motion'
 import { QrCode, Trophy } from 'lucide-react'
 import { AegisLogo } from '@/components/aegis/logo'
+import { useStadium } from '@/components/providers/StadiumProvider'
 
 export function DigitalTicket() {
+  const { walletTickets } = useStadium()
+  const activeTicket = walletTickets[0] // Get the most recently booked/active ticket
+
+  if (!activeTicket) return null;
+
   return (
     <motion.div 
       initial={{ y: 50, opacity: 0 }}
@@ -41,21 +47,29 @@ export function DigitalTicket() {
         <div className="flex items-center justify-between mb-6 sm:mb-8">
           <div className="flex flex-col items-center">
             <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full mb-2 border-2 border-gray-200 flex items-center justify-center bg-slate-50 shadow-sm">
-              <span className="font-display font-bold text-slate-800 text-sm">ARG</span>
+              <span className="font-display font-bold text-slate-800 text-sm">
+                {activeTicket.fixture.split(' vs ')[0]?.substring(0, 3).toUpperCase() || 'HOM'}
+              </span>
             </div>
-            <span className="font-display font-bold text-lg sm:text-xl text-slate-900">ARGENTINA</span>
+            <span className="font-display font-bold text-lg sm:text-xl text-slate-900">
+              {activeTicket.fixture.split(' vs ')[0]?.toUpperCase() || 'HOME TEAM'}
+            </span>
           </div>
           
           <div className="flex flex-col items-center px-4">
-            <span className="text-[10px] sm:text-xs font-bold text-slate-400 mb-1">GROUP STAGE</span>
+            <span className="text-[10px] sm:text-xs font-bold text-slate-400 mb-1">{activeTicket.stage.toUpperCase()}</span>
             <span className="font-display font-black text-xl sm:text-2xl text-[#3B82F6] italic">VS</span>
           </div>
 
           <div className="flex flex-col items-center">
             <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full mb-2 border-2 border-gray-200 flex items-center justify-center bg-slate-50 shadow-sm">
-              <span className="font-display font-bold text-slate-800 text-sm">BRA</span>
+              <span className="font-display font-bold text-slate-800 text-sm">
+                {activeTicket.fixture.split(' vs ')[1]?.substring(0, 3).toUpperCase() || 'AWY'}
+              </span>
             </div>
-            <span className="font-display font-bold text-lg sm:text-xl text-slate-900">BRAZIL</span>
+            <span className="font-display font-bold text-lg sm:text-xl text-slate-900">
+              {activeTicket.fixture.split(' vs ')[1]?.toUpperCase() || 'OPPONENT'}
+            </span>
           </div>
         </div>
 
@@ -63,15 +77,15 @@ export function DigitalTicket() {
         <div className="flex flex-wrap gap-x-6 sm:gap-x-8 gap-y-4 text-xs sm:text-sm">
           <div>
             <p className="text-slate-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">Date</p>
-            <p className="font-medium text-slate-700">Sun, July 14, 2026</p>
+            <p className="font-medium text-slate-700">{activeTicket.date.split(' · ')[0]}</p>
           </div>
           <div>
             <p className="text-slate-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">Kickoff</p>
-            <p className="font-medium text-slate-700">19:00 Local</p>
+            <p className="font-medium text-slate-700">{activeTicket.date.split(' · ')[1] || 'TBD'}</p>
           </div>
           <div>
             <p className="text-slate-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">Stadium</p>
-            <p className="font-medium text-slate-700">PitchControl Arena</p>
+            <p className="font-medium text-slate-700">{activeTicket.venue}</p>
           </div>
         </div>
       </div>
@@ -83,19 +97,19 @@ export function DigitalTicket() {
         <div className="grid grid-cols-1 gap-2 sm:gap-3 w-full text-center">
           <div className="border-b border-gray-200 pb-1 sm:pb-2">
             <p className="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-widest">Gate</p>
-            <p className="font-display font-bold text-slate-800 text-sm sm:text-base">02</p>
+            <p className="font-display font-bold text-slate-800 text-sm sm:text-base">{activeTicket.gate}</p>
           </div>
           <div className="border-b border-gray-200 pb-1 sm:pb-2">
             <p className="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-widest">Section</p>
-            <p className="font-display font-bold text-slate-800 text-sm sm:text-base">112</p>
+            <p className="font-display font-bold text-slate-800 text-sm sm:text-base">{activeTicket.section}</p>
           </div>
           <div className="border-b border-gray-200 pb-1 sm:pb-2">
             <p className="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-widest">Row</p>
-            <p className="font-display font-bold text-slate-800 text-sm sm:text-base">F</p>
+            <p className="font-display font-bold text-slate-800 text-sm sm:text-base">{activeTicket.row}</p>
           </div>
           <div>
             <p className="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-widest">Seat</p>
-            <p className="font-display font-bold text-[#3B82F6] text-lg sm:text-xl">14</p>
+            <p className="font-display font-bold text-[#3B82F6] text-lg sm:text-xl">{activeTicket.seat}</p>
           </div>
         </div>
 

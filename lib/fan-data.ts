@@ -53,7 +53,7 @@ export const FAN: FanProfile = {
 export const STAFF: FanProfile = {
   name: 'Sarah Chen',
   handle: '@schen.ops',
-  avatar: '/avatar-sarah.png', // Assuming we have or will have this, or just fallback
+  avatar: '', // Use fallback user icon
   memberSince: 'January 2023',
   tier: 'Command Level 4',
   favoriteTeam: 'Operations',

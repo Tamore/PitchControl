@@ -86,7 +86,7 @@ export function AuthGateway() {
     <div className="w-full">
       {/* Tabs */}
       {authState === 'idle' && (
-        <div className="mb-6 flex rounded-xl border border-border/60 bg-background/50 p-1">
+        <div className="mb-4 flex rounded-xl border border-border/60 bg-background/50 p-1">
           <button
             onClick={() => { setActiveTab('fan'); setEmail(''); setError(''); }}
             className={`flex-1 rounded-lg py-2.5 text-sm font-semibold transition-all ${
@@ -114,7 +114,7 @@ export function AuthGateway() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             onSubmit={handleContinue}
-            className="space-y-4"
+            className="space-y-3"
           >
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -123,7 +123,7 @@ export function AuthGateway() {
               <input
                 type={activeTab === 'fan' ? 'email' : 'text'}
                 placeholder={activeTab === 'fan' ? 'Enter ticket email (e.g. fan@demo.com)' : 'Enter Staff ID or Email'}
-                className="w-full rounded-xl border border-border/80 bg-background/50 py-3.5 pl-10 pr-4 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="w-full rounded-xl border border-border/80 bg-background/50 py-3 pl-10 pr-4 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -137,7 +137,7 @@ export function AuthGateway() {
 
             <button
               type="submit"
-              className={`w-full group flex items-center justify-between rounded-xl py-3.5 px-4 text-sm font-bold transition-all ${
+              className={`w-full group flex items-center justify-between rounded-xl py-3 px-4 text-sm font-bold transition-all ${
                 activeTab === 'fan' 
                   ? 'bg-foreground text-background hover:bg-foreground/90' 
                   : 'bg-primary text-primary-foreground hover:bg-primary/90'

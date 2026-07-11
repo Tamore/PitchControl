@@ -2,6 +2,7 @@
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { orchestrateWorkflow } from '../../lib/gemini';
+import { WALLET_TICKETS, WalletTicket } from '../../lib/fan-data';
 
 // Define the shape of our Shared Memory
 interface MissionLog {
@@ -28,6 +29,8 @@ interface StadiumContextType {
   missionTimeline: MissionLog[];
   isOrchestrating: boolean;
   dispatchEvent: (eventText: string) => Promise<void>;
+  walletTickets: WalletTicket[];
+  bookTicket: (ticket: WalletTicket) => void;
 }
 
 const StadiumContext = createContext<StadiumContextType | undefined>(undefined);
@@ -47,6 +50,11 @@ export const StadiumProvider = ({ children }: { children: ReactNode }) => {
   const [crowdData, setCrowdData] = useState<CrowdData>({ gate: 'Gate C', congestion: 40 });
   const [missionTimeline, setMissionTimeline] = useState<MissionLog[]>([]);
   const [isOrchestrating, setIsOrchestrating] = useState(false);
+  const [walletTickets, setWalletTickets] = useState<WalletTicket[]>(WALLET_TICKETS);
+
+  const bookTicket = (ticket: WalletTicket) => {
+    setWalletTickets(prev => [ticket, ...prev]);
+  };
 
   const addLog = (agent: string, message: string) => {
     const now = new Date();
@@ -109,7 +117,9 @@ export const StadiumProvider = ({ children }: { children: ReactNode }) => {
       crowdData,
       missionTimeline,
       isOrchestrating,
-      dispatchEvent
+      dispatchEvent,
+      walletTickets,
+      bookTicket
     }}>
       {children}
     </StadiumContext.Provider>

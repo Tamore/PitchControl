@@ -17,12 +17,12 @@ import { EmptyState } from '@/components/aegis/states'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
-  WALLET_TICKETS,
   WALLET_PASSES,
   PAYMENT_METHODS,
   TRANSACTIONS,
   FAN,
 } from '@/lib/fan-data'
+import { useStadium } from '@/components/providers/StadiumProvider'
 
 const TABS = ['Tickets', 'Passes', 'Payment', 'Activity'] as const
 type Tab = (typeof TABS)[number]
@@ -36,6 +36,7 @@ const statusStyles: Record<string, string> = {
 export default function WalletPage() {
   const [tab, setTab] = useState<Tab>('Tickets')
   const [addCardOpen, setAddCardOpen] = useState(false)
+  const { walletTickets } = useStadium()
 
   return (
     <FanShell
@@ -65,7 +66,7 @@ export default function WalletPage() {
 
       {tab === 'Tickets' && (
         <div className="grid gap-4 md:grid-cols-2">
-          {WALLET_TICKETS.map((t, i) => (
+          {walletTickets.map((t, i) => (
             <motion.div
               key={t.id}
               initial={{ opacity: 0, y: 16 }}

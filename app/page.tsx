@@ -28,7 +28,7 @@ export default function LandingPage() {
 
       <main className="flex-1 min-h-0 w-full max-w-[1600px] mx-auto grid lg:grid-cols-2 relative z-10">
         {/* Left Side: Login Card */}
-        <div className="flex items-center justify-center p-4 relative z-10 w-full">
+        <div className="flex items-center justify-center p-4 relative z-10 w-full overflow-y-auto h-full">
           <motion.div
             initial="hidden"
             animate="show"
@@ -36,14 +36,14 @@ export default function LandingPage() {
             className="w-full max-w-[400px] xl:max-w-md"
           >
           {/* Login Card */}
-          <motion.div variants={fadeUp} className="border border-border/80 bg-card/60 backdrop-blur-2xl shadow-2xl p-5 rounded-3xl">
-            <div className="flex flex-col items-center text-center mb-4">
+          <motion.div variants={fadeUp} className="border border-border/80 bg-card/60 backdrop-blur-2xl shadow-2xl p-4 rounded-3xl">
+            <div className="flex flex-col items-center text-center mb-3">
               <AegisLogo />
-              <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-widest text-primary">
+              <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-widest text-primary">
                 <Fingerprint className="h-3.5 w-3.5" />
                 Aegis Identity Gateway
               </div>
-              <h1 className="mt-2.5 font-display text-xl sm:text-2xl font-bold tracking-tight">
+              <h1 className="mt-1.5 font-display text-xl sm:text-2xl font-bold tracking-tight">
                 Welcome to PitchControl
               </h1>
               <p className="mt-1 text-xs sm:text-sm text-muted-foreground leading-tight">
@@ -55,10 +55,16 @@ export default function LandingPage() {
               <AuthGateway />
             </div>
             
-            <div className="mt-4 pt-4 border-t border-border/50 text-center">
-              <p className="text-[0.6rem] text-muted-foreground uppercase tracking-widest">
+            <div className="mt-3 pt-3 border-t border-border/50 text-center">
+              <p className="text-[0.6rem] text-muted-foreground uppercase tracking-widest mb-2">
                 Protected by Google Cloud Security
               </p>
+              <Link
+                href="/book"
+                className="inline-flex w-full items-center justify-center rounded-xl bg-secondary py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-secondary/80"
+              >
+                Need a ticket? Book now
+              </Link>
             </div>
           </motion.div>
         </motion.div>
@@ -73,7 +79,7 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-50 w-full py-4 text-center text-xs text-muted-foreground shrink-0 bg-background border-t border-border/40">
+      <footer className="relative z-50 w-full py-3 text-center text-xs text-muted-foreground shrink-0 bg-background border-t border-border/40">
         © 2026 PitchControl. Not affiliated with FIFA. Demonstration interface.
       </footer>
     </div>
