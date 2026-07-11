@@ -14,7 +14,7 @@ import {
   LogOut,
   ChevronRight,
 } from 'lucide-react'
-import { FAN, NOTIFICATIONS } from '@/lib/fan-data'
+import { FAN, STAFF, NOTIFICATIONS } from '@/lib/fan-data'
 
 const MENU = [
   { href: '/profile', label: 'Profile', icon: User },
@@ -25,10 +25,11 @@ const MENU = [
   { href: '/settings', label: 'Settings', icon: Settings },
 ]
 
-export function AccountMenu() {
+export function AccountMenu({ persona = 'fan' }: { persona?: 'fan' | 'staff' }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const unread = NOTIFICATIONS.filter((n) => !n.read).length
+  const activeProfile = persona === 'staff' ? STAFF : FAN
 
   useEffect(() => {
     function onClick(e: MouseEvent) {
@@ -60,11 +61,11 @@ export function AccountMenu() {
           aria-expanded={open}
           className="inline-flex items-center gap-2 rounded-full border border-border/70 py-1 pl-1 pr-2.5 transition-colors hover:border-primary/40"
         >
-          <span className="relative h-7 w-7 overflow-hidden rounded-full border border-border">
-            <Image src={FAN.avatar} alt={FAN.name} fill className="object-cover" sizes="28px" />
+          <span className="relative h-7 w-7 overflow-hidden rounded-full border border-border bg-muted">
+            <Image src={activeProfile.avatar} alt={activeProfile.name} fill className="object-cover" sizes="28px" />
           </span>
           <span className="hidden text-xs font-medium text-foreground sm:inline">
-            {FAN.name.split(' ')[0]}
+            {activeProfile.name.split(' ')[0]}
           </span>
         </button>
 
@@ -83,14 +84,14 @@ export function AccountMenu() {
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-3 rounded-xl p-2.5 transition-colors hover:bg-secondary"
               >
-                <span className="relative h-10 w-10 overflow-hidden rounded-full border border-border">
-                  <Image src={FAN.avatar} alt={FAN.name} fill className="object-cover" sizes="40px" />
+                <span className="relative h-10 w-10 overflow-hidden rounded-full border border-border bg-muted">
+                  <Image src={activeProfile.avatar} alt={activeProfile.name} fill className="object-cover" sizes="40px" />
                 </span>
                 <span className="min-w-0">
                   <span className="block truncate text-sm font-semibold text-popover-foreground">
-                    {FAN.name}
+                    {activeProfile.name}
                   </span>
-                  <span className="block truncate text-xs text-muted-foreground">{FAN.tier}</span>
+                  <span className="block truncate text-xs text-muted-foreground">{activeProfile.tier}</span>
                 </span>
                 <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
               </Link>

@@ -36,7 +36,7 @@ export function DirectorConsole() {
   }
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-card/80 p-5">
+    <div className="flex flex-col rounded-2xl border border-border/70 bg-card/80 p-5">
       <div className="mb-4 flex items-center gap-3">
         <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent">
           <Crown className="h-5 w-5" />

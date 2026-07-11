@@ -4,23 +4,23 @@ import { motion } from 'framer-motion'
 import { Crown, Ticket, Users, Radio, ShieldCheck, Settings2, Leaf } from 'lucide-react'
 
 const ORBIT_AGENTS = [
-  { id: 'ticket', icon: Ticket, radius: 100, speed: 12, offset: 0, color: 'text-[color:var(--agent-ticket)]' },
-  { id: 'crowd', icon: Users, radius: 100, speed: 12, offset: 120, color: 'text-[color:var(--agent-crowd)]' },
-  { id: 'broadcast', icon: Radio, radius: 100, speed: 12, offset: 240, color: 'text-[color:var(--agent-broadcast)]' },
-  { id: 'guardian', icon: ShieldCheck, radius: 160, speed: 18, offset: 60, color: 'text-[color:var(--agent-guardian)]' },
-  { id: 'ops', icon: Settings2, radius: 160, speed: 18, offset: 180, color: 'text-[color:var(--agent-ops)]' },
-  { id: 'eco', icon: Leaf, radius: 160, speed: 18, offset: 300, color: 'text-[color:var(--agent-eco)]' },
+  { id: 'ticket', icon: Ticket, radius: 65, speed: 12, offset: 0, color: 'text-[color:var(--agent-ticket)]' },
+  { id: 'crowd', icon: Users, radius: 65, speed: 12, offset: 120, color: 'text-[color:var(--agent-crowd)]' },
+  { id: 'broadcast', icon: Radio, radius: 65, speed: 12, offset: 240, color: 'text-[color:var(--agent-broadcast)]' },
+  { id: 'guardian', icon: ShieldCheck, radius: 110, speed: 18, offset: 60, color: 'text-[color:var(--agent-guardian)]' },
+  { id: 'ops', icon: Settings2, radius: 110, speed: 18, offset: 180, color: 'text-[color:var(--agent-ops)]' },
+  { id: 'eco', icon: Leaf, radius: 110, speed: 18, offset: 300, color: 'text-[color:var(--agent-eco)]' },
 ]
 
 export function Orbit() {
   return (
-    <div className="relative flex h-[400px] w-full items-center justify-center overflow-hidden">
+    <div className="relative flex h-[260px] w-full items-center justify-center overflow-hidden">
       {/* Background Rings */}
-      <div className="absolute h-[200px] w-[200px] rounded-full border border-border/40" />
-      <div className="absolute h-[320px] w-[320px] rounded-full border border-border/20 border-dashed" />
+      <div className="absolute h-[130px] w-[130px] rounded-full border border-border/40" />
+      <div className="absolute h-[220px] w-[220px] rounded-full border border-border/20 border-dashed" />
 
       {/* SVG Data Pulses */}
-      <svg className="absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 400 400">
+      <svg className="absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 260 260">
         <defs>
           <linearGradient id="pulse-grad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="var(--electric)" stopOpacity="0" />
@@ -29,15 +29,13 @@ export function Orbit() {
         </defs>
         {ORBIT_AGENTS.map((agent) => {
           // Calculate initial position based on offset (which is in degrees)
-          // 0 offset = top (x: 200, y: 200 - radius)
+          // 0 offset = top (x: 130, y: 130 - radius)
           const rad = (agent.offset - 90) * (Math.PI / 180)
-          const x2 = 200 + agent.radius * Math.cos(rad)
-          const y2 = 200 + agent.radius * Math.sin(rad)
           
           return (
             <motion.g
               key={`pulse-${agent.id}`}
-              style={{ transformOrigin: '200px 200px' }}
+              style={{ transformOrigin: '130px 130px' }}
               animate={{ rotate: 360 }}
               transition={{
                 duration: agent.speed,
@@ -46,17 +44,17 @@ export function Orbit() {
               }}
             >
               <motion.line
-                x1="200"
-                y1="200"
-                x2="200"
-                y2={200 - agent.radius}
+                x1="130"
+                y1="130"
+                x2="130"
+                y2={130 - agent.radius}
                 stroke="url(#pulse-grad)"
                 strokeWidth="2"
                 strokeDasharray="4 12"
                 initial={{ strokeDashoffset: 16 }}
                 animate={{ strokeDashoffset: 0 }}
                 transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }}
-                style={{ rotate: `${agent.offset}deg`, transformOrigin: '200px 200px' }}
+                style={{ rotate: `${agent.offset}deg`, transformOrigin: '130px 130px' }}
               />
             </motion.g>
           )

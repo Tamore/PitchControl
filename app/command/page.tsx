@@ -16,14 +16,12 @@ import {
   ShieldCheck,
 } from 'lucide-react'
 import { PortalNav } from '@/components/aegis/portal-nav'
-import { HoloStadium } from '@/components/command/holo-stadium'
+import { HeatmapStadium } from '@/components/command/heatmap-stadium'
 import { WorkforcePanel } from '@/components/command/workforce-panel'
 import { DirectorConsole } from '@/components/command/director-console'
 import { MissionTimeline } from '@/components/command/mission-timeline'
 import { KPIS } from '@/lib/aegis'
-import { FloatingDock } from '@/components/ui/floating-dock'
 import { Spotlight } from '@/components/ui/spotlight'
-import { Orbit } from '@/components/ui/orbit'
 import { IncidentFeed } from '@/components/command/incident-card'
 
 function Panel({
@@ -58,7 +56,7 @@ export default function CommandCenterPage() {
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
       <Spotlight className="opacity-30" />
-      <PortalNav label="Command Center" cta={{ href: '/fanhub', text: 'Open FanHub' }} />
+      <PortalNav label="Command Center" cta={{ href: '/fanhub', text: 'Open FanHub' }} persona="staff" />
 
       {/* Local broadcast ticker removed in favor of global BroadcastStrip */}
 
@@ -122,7 +120,7 @@ export default function CommandCenterPage() {
           <div className="relative overflow-hidden rounded-xl border border-border/60 bg-background/40 h-[40vh] lg:h-[55vh]">
             <div className="pointer-events-none absolute inset-0 grid-tactical opacity-40" />
             <div className="relative w-full h-full">
-              <HoloStadium />
+              <HeatmapStadium />
             </div>
           </div>
         </Panel>
@@ -134,7 +132,6 @@ export default function CommandCenterPage() {
           <div className="xl:col-span-4 flex flex-col gap-4">
             <Panel
               title="Incident Feed"
-              className="flex-1"
               action={
                 <span className="inline-flex items-center gap-1 text-[0.7rem] font-medium text-destructive">
                   <AlertTriangle className="h-3.5 w-3.5" /> 1 active
@@ -195,26 +192,7 @@ export default function CommandCenterPage() {
                 </div>
               </div>
             </Panel>
-          </div>
 
-          {/* Column 2: Agent Operations */}
-          <div className="xl:col-span-4 flex flex-col gap-4">
-            <Panel title="Agent Status" className="flex-1">
-              <WorkforcePanel />
-            </Panel>
-            <Panel title="AI Workforce Dynamics">
-              <div className="h-[180px] w-full flex items-center justify-center">
-                <Orbit />
-              </div>
-            </Panel>
-          </div>
-
-          {/* Column 3: Director & Explainability */}
-          <div className="xl:col-span-4 flex flex-col gap-4">
-            <div className="flex-1">
-              <DirectorConsole />
-            </div>
-            
             <Panel
               title="AI Explainability"
               action={<Info className="h-4 w-4 text-muted-foreground" />}
@@ -240,10 +218,20 @@ export default function CommandCenterPage() {
             </Panel>
           </div>
 
+          {/* Column 2: Agent Operations */}
+          <div className="xl:col-span-4 flex flex-col gap-4">
+            <Panel title="Agent Status">
+              <WorkforcePanel />
+            </Panel>
+          </div>
+
+          {/* Column 3: Director & Explainability */}
+          <div className="xl:col-span-4 flex flex-col gap-4">
+            <DirectorConsole />
+          </div>
+
         </div>
       </main>
-
-      <FloatingDock />
     </div>
   )
 }

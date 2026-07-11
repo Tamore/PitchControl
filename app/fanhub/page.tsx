@@ -26,6 +26,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useStadium } from '@/components/providers/StadiumProvider'
 import { SeatMap } from '@/components/fanhub/seat-map'
+import { DigitalTicket } from '@/components/fanhub/digital-ticket'
 import { Globe } from '@/components/ui/globe'
 
 const ROUTE_STEPS = [
@@ -95,39 +96,29 @@ export default function FanHubPage() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-12">
-          {/* Main Hero: 3D Seat Map */}
-          <div className="lg:col-span-12">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.98 }} 
-              animate={{ opacity: 1, scale: 1 }} 
-              transition={{ duration: 0.6 }}
-              className="w-full h-[50vh] lg:h-[60vh]"
-            >
-              <SeatMap section="112" row="F" seat="14" />
-            </motion.div>
-          </div>
+          {/* Main Hero: Side-by-side Ticket & Map */}
+          <div className="lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-8 mb-4">
+            
+            {/* Left side: Digital Ticket */}
+            <div className="lg:col-span-5 flex items-center justify-center lg:justify-start pt-4 lg:pt-0">
+              <DigitalTicket />
+            </div>
 
-          {/* Column 1: Identity & Access */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
-            <Card i={1} className="bg-gradient-to-br from-card to-secondary/20 flex-1">
-              <SectionLabel icon={Ticket}>Digital Ticket</SectionLabel>
-              <h2 className="font-display text-2xl font-bold">Priya Sharma</h2>
-              
-              <div className="mt-6 flex flex-col items-center justify-center rounded-2xl border border-border bg-background p-6">
-                <QrCode className="h-32 w-32 text-foreground" strokeWidth={1} />
-                <span className="mt-4 font-mono text-[0.7rem] tracking-widest text-muted-foreground">
-                  WC26-51-112F14
-                </span>
-              </div>
-              
-              <div className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary/10 px-3 py-2 text-xs font-medium text-primary">
-                <CheckCircle2 className="h-4 w-4" /> Verified by TicketPilot AI
-              </div>
-            </Card>
+            {/* Right side: 3D Seat Map with Pin */}
+            <div className="lg:col-span-7">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.98 }} 
+                animate={{ opacity: 1, scale: 1 }} 
+                transition={{ duration: 0.6 }}
+                className="w-full h-[50vh] lg:h-[60vh] min-h-[450px]"
+              >
+                <SeatMap section="112" row="F" seat="14" />
+              </motion.div>
+            </div>
           </div>
 
           {/* Column 2: Navigation & Safety */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
+          <div className="lg:col-span-6 flex flex-col gap-6">
             <Card i={2}>
               <SectionLabel icon={DoorOpen}>Best Entrance</SectionLabel>
               <div className="flex items-baseline gap-2">
@@ -157,7 +148,7 @@ export default function FanHubPage() {
           </div>
 
           {/* Column 3: Live Environment & Intel */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
+          <div className="lg:col-span-6 flex flex-col gap-6">
             <Card i={4}>
               <SectionLabel icon={Train}>Transport Status</SectionLabel>
               <div className="space-y-3">

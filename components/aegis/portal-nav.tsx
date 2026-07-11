@@ -10,10 +10,12 @@ export function PortalNav({
   label,
   cta,
   showAccount = true,
+  persona = 'fan',
 }: {
   label: string
-  cta: { href: string; text: string }
+  cta?: { href: string; text: string }
   showAccount?: boolean
+  persona?: 'fan' | 'staff'
 }) {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
@@ -32,7 +34,7 @@ export function PortalNav({
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           {/* CTA removed since main NAV links handle routing now */}
-          {showAccount && <AccountMenu />}
+          {showAccount && <AccountMenu persona={persona} />}
         </div>
       </div>
     </header>

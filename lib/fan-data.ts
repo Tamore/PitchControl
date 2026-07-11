@@ -50,6 +50,22 @@ export const FAN: FanProfile = {
   loyaltyPoints: 4820,
 }
 
+export const STAFF: FanProfile = {
+  name: 'Sarah Chen',
+  handle: '@schen.ops',
+  avatar: '/avatar-sarah.png', // Assuming we have or will have this, or just fallback
+  memberSince: 'January 2023',
+  tier: 'Command Level 4',
+  favoriteTeam: 'Operations',
+  location: 'MetLife Stadium',
+  email: 'sarah.chen@pitchcontrol.app',
+  phone: '+1 (555) 019-8233',
+  language: 'English (US)',
+  matchesAttended: 142,
+  countriesVisited: 1,
+  loyaltyPoints: 0,
+}
+
 export type MatchHistory = {
   id: string
   fixture: string
