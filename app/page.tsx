@@ -30,11 +30,11 @@ export default function LandingPage() {
           src="/stadium_bg.png" 
           alt="Stadium Background" 
           fill 
-          className="object-cover opacity-40 mix-blend-luminosity"
+          className="object-cover opacity-50 dark:opacity-30"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        <div className="absolute inset-0 grid-tactical opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+        <div className="absolute inset-0 grid-tactical opacity-20" />
       </div>
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-primary/10 blur-[120px] z-0" />
 
