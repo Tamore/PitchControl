@@ -83,30 +83,48 @@ export function AccountMenu({ persona = 'fan' }: { persona?: 'fan' | 'staff' }) 
               role="menu"
               className="absolute right-0 top-12 w-64 overflow-hidden rounded-2xl border border-border/70 bg-popover p-1.5 shadow-2xl"
             >
-              <Link
-                href="/profile"
-                onClick={() => setOpen(false)}
-                className="flex items-center gap-3 rounded-xl p-2.5 transition-colors hover:bg-secondary"
-              >
-                <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-border bg-muted">
-                  {activeProfile.avatar ? (
-                    <Image src={activeProfile.avatar} alt={activeProfile.name} fill className="object-cover" sizes="40px" />
-                  ) : (
-                    <User className="h-5 w-5 text-muted-foreground" />
-                  )}
-                </span>
-                <span className="min-w-0">
-                  <span className="block truncate text-sm font-semibold text-popover-foreground">
-                    {activeProfile.name}
+              {persona === 'fan' ? (
+                <Link
+                  href="/profile"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 rounded-xl p-2.5 transition-colors hover:bg-secondary"
+                >
+                  <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-border bg-muted">
+                    {activeProfile.avatar ? (
+                      <Image src={activeProfile.avatar} alt={activeProfile.name} fill className="object-cover" sizes="40px" />
+                    ) : (
+                      <User className="h-5 w-5 text-muted-foreground" />
+                    )}
                   </span>
-                  <span className="block truncate text-xs text-muted-foreground">{activeProfile.tier}</span>
-                </span>
-                <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
-              </Link>
+                  <span className="min-w-0">
+                    <span className="block truncate text-sm font-semibold text-popover-foreground">
+                      {activeProfile.name}
+                    </span>
+                    <span className="block truncate text-xs text-muted-foreground">{activeProfile.tier}</span>
+                  </span>
+                  <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
+                </Link>
+              ) : (
+                <div className="flex items-center gap-3 rounded-xl p-2.5 cursor-default">
+                  <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-border bg-muted">
+                    {activeProfile.avatar ? (
+                      <Image src={activeProfile.avatar} alt={activeProfile.name} fill className="object-cover" sizes="40px" />
+                    ) : (
+                      <User className="h-5 w-5 text-muted-foreground" />
+                    )}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block truncate text-sm font-semibold text-popover-foreground">
+                      {activeProfile.name}
+                    </span>
+                    <span className="block truncate text-xs text-muted-foreground">{activeProfile.tier}</span>
+                  </span>
+                </div>
+              )}
 
               <div className="my-1.5 h-px bg-border/60" />
 
-              {MENU.map((m) => (
+              {persona === 'fan' && MENU.map((m) => (
                 <Link
                   key={m.href}
                   href={m.href}
@@ -124,16 +142,17 @@ export function AccountMenu({ persona = 'fan' }: { persona?: 'fan' | 'staff' }) 
                 </Link>
               ))}
 
-              <div className="my-1.5 h-px bg-border/60" />
+              {persona === 'fan' && <div className="my-1.5 h-px bg-border/60" />}
 
-              <button
+              <Link
+                href="/"
                 onClick={() => setOpen(false)}
                 role="menuitem"
                 className="flex w-full items-center gap-3 rounded-xl px-2.5 py-2 text-sm text-destructive transition-colors hover:bg-destructive/10"
               >
                 <LogOut className="h-4 w-4" />
                 Sign out
-              </button>
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>

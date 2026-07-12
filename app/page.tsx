@@ -7,7 +7,9 @@ import {
   ShieldCheck,
   User,
   Fingerprint,
+  Trophy,
 } from 'lucide-react'
+import Image from 'next/image'
 import { AegisLogo } from '@/components/aegis/logo'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -23,8 +25,18 @@ export default function LandingPage() {
   return (
     <div className="h-[calc(100vh-40px)] bg-background text-foreground overflow-hidden flex flex-col relative">
       {/* Background Elements */}
-      <div className="pointer-events-none absolute inset-0 grid-tactical opacity-30 z-0" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-primary/5 blur-[120px] z-0" />
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <Image 
+          src="/stadium_bg.png" 
+          alt="Stadium Background" 
+          fill 
+          className="object-cover opacity-40 mix-blend-luminosity"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+        <div className="absolute inset-0 grid-tactical opacity-30" />
+      </div>
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-primary/10 blur-[120px] z-0" />
 
       <main className="flex-1 min-h-0 w-full max-w-[1600px] mx-auto grid lg:grid-cols-2 relative z-10">
         {/* Left Side: Login Card */}
@@ -40,8 +52,8 @@ export default function LandingPage() {
             <div className="flex flex-col items-center text-center mb-3">
               <AegisLogo />
               <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-widest text-primary">
-                <Fingerprint className="h-3.5 w-3.5" />
-                Aegis Identity Gateway
+                <Trophy className="h-3.5 w-3.5" />
+                FIFA WORLD CUP 26™
               </div>
               <h1 className="mt-1.5 font-display text-xl sm:text-2xl font-bold tracking-tight">
                 Welcome to PitchControl

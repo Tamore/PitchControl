@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { 
@@ -60,12 +60,32 @@ export default function BookTicketPage() {
   const [selectedMatch, setSelectedMatch] = useState<typeof UPCOMING_MATCHES[0] | null>(null)
   const [selectedBlock, setSelectedBlock] = useState<BlockInfo | null>(null)
 
+  useEffect(() => {
+    // Initialize the history state on mount
+    window.history.replaceState({ step: 'MATCH' }, '', '#match')
+
+    const handlePopState = (e: PopStateEvent) => {
+      if (e.state && e.state.step) {
+        setStep(e.state.step)
+      }
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
   const handleNext = () => {
-    if (step === 'MATCH' && selectedMatch) setStep('SEAT')
-    else if (step === 'SEAT' && selectedBlock) setStep('PROFILE')
-    else if (step === 'PROFILE') setStep('PAYMENT')
-    else if (step === 'PAYMENT') {
+    if (step === 'MATCH' && selectedMatch) {
+      setStep('SEAT')
+      window.history.pushState({ step: 'SEAT' }, '', '#seat')
+    } else if (step === 'SEAT' && selectedBlock) {
+      setStep('PROFILE')
+      window.history.pushState({ step: 'PROFILE' }, '', '#profile')
+    } else if (step === 'PROFILE') {
+      setStep('PAYMENT')
+      window.history.pushState({ step: 'PAYMENT' }, '', '#payment')
+    } else if (step === 'PAYMENT') {
       setStep('PROCESSING')
+      window.history.pushState({ step: 'PROCESSING' }, '', '#processing')
       // Simulate TicketPilot AI Processing
       setTimeout(() => {
         // Mint the ticket
@@ -85,6 +105,7 @@ export default function BookTicketPage() {
         
         bookTicket(newTicket)
         setStep('SUCCESS')
+        window.history.replaceState({ step: 'SUCCESS' }, '', '#success')
       }, 3500)
     }
   }
@@ -99,10 +120,11 @@ export default function BookTicketPage() {
       <header className="relative z-10 w-full p-6 flex items-center justify-between border-b border-border/40">
         <button 
           onClick={() => {
-            if (step === 'SEAT') setStep('MATCH')
-            else if (step === 'PROFILE') setStep('SEAT')
-            else if (step === 'PAYMENT') setStep('PROFILE')
-            else router.push('/')
+            if (step === 'MATCH') {
+              router.push('/')
+            } else {
+              window.history.back()
+            }
           }}
           disabled={step === 'PROCESSING' || step === 'SUCCESS'}
           className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30"
