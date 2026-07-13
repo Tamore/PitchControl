@@ -64,11 +64,11 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div className="relative z-10 space-y-3">
               <AuthGateway />
             </div>
             
-            <div className="mt-3 pt-3 border-t border-border/50 text-center">
+            <div className="relative z-10 mt-3 pt-3 border-t border-border/50 text-center">
               <p className="text-[0.6rem] text-muted-foreground uppercase tracking-widest mb-2">
                 Protected by Google Cloud Security
               </p>
