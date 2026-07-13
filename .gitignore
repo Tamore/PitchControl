@@ -17,3 +17,9 @@ node_modules
 # Documentation files (Keep only README.md)
 *.md
 !README.md
+
+# Build & Temp
+tsconfig.tsbuildinfo
+rename.js
+rename.py
+pnpm-lock.yaml
