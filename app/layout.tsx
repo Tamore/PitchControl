@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${manrope.variable} bg-background`}>
+    <html lang="en" className={`dark ${spaceGrotesk.variable} ${manrope.variable} bg-background`}>
       <body className="font-sans antialiased">
         <StadiumProvider>
           <BroadcastStrip />
