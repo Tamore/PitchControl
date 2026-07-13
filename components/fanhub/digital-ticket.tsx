@@ -44,30 +44,30 @@ export function DigitalTicket() {
         </div>
 
         {/* Teams & Score */}
-        <div className="flex items-center justify-between mb-6 sm:mb-8">
-          <div className="flex flex-col items-center">
-            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full mb-2 border-2 border-gray-200 flex items-center justify-center bg-slate-50 shadow-sm">
+        <div className="flex items-start justify-between mb-6 sm:mb-8">
+          <div className="flex flex-col items-center flex-1 text-center">
+            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full mb-2 border-2 border-gray-200 flex items-center justify-center bg-slate-50 shadow-sm shrink-0">
               <span className="font-display font-bold text-slate-800 text-sm">
                 {activeTicket.fixture.split(' vs ')[0]?.substring(0, 3).toUpperCase() || 'HOM'}
               </span>
             </div>
-            <span className="font-display font-bold text-lg sm:text-xl text-slate-900">
+            <span className="font-display font-bold text-lg sm:text-xl text-slate-900 leading-tight">
               {activeTicket.fixture.split(' vs ')[0]?.toUpperCase() || 'HOME TEAM'}
             </span>
           </div>
           
-          <div className="flex flex-col items-center px-4">
+          <div className="flex flex-col items-center px-2 sm:px-4 pt-1 sm:pt-2 shrink-0">
             <span className="text-[10px] sm:text-xs font-bold text-slate-400 mb-1">{activeTicket.stage.toUpperCase()}</span>
-            <span className="font-display font-black text-xl sm:text-2xl text-[#3B82F6] italic">VS</span>
+            <span className="font-display font-black text-xl sm:text-2xl text-[#3B82F6] italic leading-none">VS</span>
           </div>
 
-          <div className="flex flex-col items-center">
-            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full mb-2 border-2 border-gray-200 flex items-center justify-center bg-slate-50 shadow-sm">
+          <div className="flex flex-col items-center flex-1 text-center">
+            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full mb-2 border-2 border-gray-200 flex items-center justify-center bg-slate-50 shadow-sm shrink-0">
               <span className="font-display font-bold text-slate-800 text-sm">
                 {activeTicket.fixture.split(' vs ')[1]?.substring(0, 3).toUpperCase() || 'AWY'}
               </span>
             </div>
-            <span className="font-display font-bold text-lg sm:text-xl text-slate-900">
+            <span className="font-display font-bold text-lg sm:text-xl text-slate-900 leading-tight">
               {activeTicket.fixture.split(' vs ')[1]?.toUpperCase() || 'OPPONENT'}
             </span>
           </div>
