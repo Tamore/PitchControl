@@ -1,26 +1,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { DIRECTOR_SYSTEM_PROMPT } from "./prompts/stadium-orchestrator";
 
 const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
-
-// The single unified Prompt for the Director AI Orchestrator
-const SYSTEM_PROMPT = `
-You are Director AI, the central orchestrator for PitchControl (a FIFA World Cup stadium management system).
-You manage an ecosystem of AI agents: TicketPilot, Broadcast, CrowdSense, Guardian, OpsPilot, and EcoPulse.
-
-When an event occurs, you must return a strict JSON object detailing the actions and data updates for EACH agent.
-Your response MUST be valid JSON matching this exact structure, with no markdown formatting or backticks outside of the JSON block:
-
-{
-  "Director": { "log": "Brief summary of the incident and orchestration." },
-  "TicketPilot": { "status": "string", "seat": "string (e.g., Section 118)" },
-  "Broadcast": { "notification": "String message for the fan", "target": "string" },
-  "CrowdSense": { "gate": "string", "congestion": number (0-100) },
-  "Guardian": { "alert": "string or null" },
-  "OpsPilot": { "action": "string or null", "volunteersDeployed": number },
-  "EcoPulse": { "energySpike": number, "recommendation": "string or null" }
-}
-`;
 
 // Robust Fallback for demo reliability (Quota limits or missing API key)
 const getFallbackResponse = (event: string) => {
@@ -57,7 +39,7 @@ export async function orchestrateWorkflow(eventText: string) {
 
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-    const fullPrompt = `${SYSTEM_PROMPT}\n\nEVENT TRIGGERED:\n${eventText}\n\nRespond strictly in JSON.`;
+    const fullPrompt = `${DIRECTOR_SYSTEM_PROMPT}\n\nEVENT TRIGGERED:\n${eventText}\n\nRespond strictly in JSON.`;
     
     const result = await model.generateContent(fullPrompt);
     const responseText = result.response.text();

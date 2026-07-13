@@ -59,6 +59,7 @@ export function AccountMenu({ persona = 'fan' }: { persona?: 'fan' | 'staff' }) 
           onClick={() => setOpen((o) => !o)}
           aria-haspopup="menu"
           aria-expanded={open}
+          aria-label="Account menu"
           className="inline-flex items-center gap-2 rounded-full border border-border/70 py-1 pl-1 pr-2.5 transition-colors hover:border-primary/40"
         >
           <span className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-border bg-muted">
