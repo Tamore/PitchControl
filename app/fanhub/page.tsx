@@ -20,7 +20,7 @@ import {
   Footprints,
   Languages,
 } from 'lucide-react'
-import { PortalNav } from '@/components/aegis/portal-nav'
+import { PortalNav } from '@/components/pitchcontrol/portal-nav'
 import { Modal } from '@/components/ui/modal'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -120,7 +120,7 @@ export default function FanHubPage() {
           {/* Column 2: Navigation & Safety */}
           <div className="lg:col-span-6 flex flex-col gap-6">
             <Card i={2}>
-              <SectionLabel icon={DoorOpen}>Best Entrance</SectionLabel>
+              <SectionLabel icon={DoorOpen as any}>Best Entrance</SectionLabel>
               <div className="flex items-baseline gap-2">
                 <span className="font-display text-4xl font-bold">Gate C</span>
                 <span className="text-sm text-primary">· 4 min walk</span>
@@ -137,7 +137,7 @@ export default function FanHubPage() {
             </Card>
 
             <Card i={3} className="border-primary/30 bg-primary/[0.04] flex-1">
-              <SectionLabel icon={Accessibility}>Guardian AI</SectionLabel>
+              <SectionLabel icon={Accessibility as any}>Guardian AI</SectionLabel>
               <p className="text-sm text-muted-foreground">
                 A step-free route to Section 112 is verified and clear. Assistance staff are on standby at Gate C.
               </p>
@@ -150,7 +150,7 @@ export default function FanHubPage() {
           {/* Column 3: Live Environment & Intel */}
           <div className="lg:col-span-6 flex flex-col gap-6">
             <Card i={4}>
-              <SectionLabel icon={Train}>Transport Status</SectionLabel>
+              <SectionLabel icon={Train as any}>Transport Status</SectionLabel>
               <div className="space-y-3">
                 {[
                   { line: 'NJ Transit · Rail', status: 'On time', ok: true },
@@ -175,7 +175,7 @@ export default function FanHubPage() {
             </Card>
 
             <Card i={5} className="bg-secondary/10 flex-1">
-              <SectionLabel icon={CloudSun}>Match Environment</SectionLabel>
+              <SectionLabel icon={CloudSun as any}>Match Environment</SectionLabel>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <div className="flex items-center gap-2 mb-1">

@@ -95,8 +95,8 @@ export default function BookTicketPage() {
           stage: selectedMatch!.stage,
           venue: selectedMatch!.venue,
           date: selectedMatch!.date,
-          gate: selectedBlock.zoneId === 'access' ? 'C' : (Math.random() > 0.5 ? 'North' : 'South'),
-          section: selectedBlock.sectionName,
+          gate: selectedBlock!.zoneId === 'access' ? 'C' : (Math.random() > 0.5 ? 'North' : 'South'),
+          section: selectedBlock!.sectionName,
           row: 'F',
           seat: Math.floor(Math.random() * 30 + 1).toString(),
           code: `WC26-${selectedMatch!.stage.substring(0,2).toUpperCase()}-${Date.now().toString().substring(8)}`,
@@ -133,7 +133,7 @@ export default function BookTicketPage() {
           {step === 'MATCH' ? 'Cancel' : 'Back'}
         </button>
         <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-          Aegis Ticketing
+          PitchControl Ticketing
         </div>
       </header>
 
@@ -235,7 +235,7 @@ export default function BookTicketPage() {
               >
                 <div>
                   <h1 className="font-display text-3xl font-bold">Your Details</h1>
-                  <p className="text-sm text-muted-foreground mt-1">Create your Aegis Profile to secure the ticket.</p>
+                  <p className="text-sm text-muted-foreground mt-1">Create your PitchControl Profile to secure the ticket.</p>
                 </div>
                 
                 <div className="space-y-4">

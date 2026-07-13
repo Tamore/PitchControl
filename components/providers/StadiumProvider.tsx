@@ -3,6 +3,7 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { orchestrateWorkflow } from '../../lib/gemini';
 import { WALLET_TICKETS, WalletTicket } from '../../lib/fan-data';
+import { TIMELINE } from '../../lib/pitchcontrol';
 
 // Define the shape of our Shared Memory
 interface MissionLog {
@@ -48,7 +49,14 @@ export const StadiumProvider = ({ children }: { children: ReactNode }) => {
   const [ticketStatus, setTicketStatus] = useState('pending');
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [crowdData, setCrowdData] = useState<CrowdData>({ gate: 'Gate C', congestion: 40 });
-  const [missionTimeline, setMissionTimeline] = useState<MissionLog[]>([]);
+  const [missionTimeline, setMissionTimeline] = useState<MissionLog[]>(
+    TIMELINE.map((t, i) => ({
+      id: `init-${i}`,
+      agent: t.agent,
+      message: t.title,
+      timestamp: t.time
+    })).reverse()
+  );
   const [isOrchestrating, setIsOrchestrating] = useState(false);
   const [walletTickets, setWalletTickets] = useState<WalletTicket[]>(WALLET_TICKETS);
 

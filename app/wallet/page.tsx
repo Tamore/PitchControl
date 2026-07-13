@@ -11,9 +11,9 @@ import {
   Ticket as TicketIcon,
   Star,
 } from 'lucide-react'
-import { FanShell } from '@/components/aegis/fan-shell'
+import { FanShell } from '@/components/pitchcontrol/fan-shell'
 import { Modal } from '@/components/ui/modal'
-import { EmptyState } from '@/components/aegis/states'
+import { EmptyState } from '@/components/pitchcontrol/states'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {

@@ -39,7 +39,7 @@ export const FAN: FanProfile = {
   handle: '@priya.wc26',
   avatar: '/avatar-priya.png',
   memberSince: 'March 2025',
-  tier: 'Aegis Gold',
+  tier: 'PitchControl Gold',
   favoriteTeam: 'Argentina',
   location: 'Newark, NJ',
   email: 'priya.sharma@example.com',

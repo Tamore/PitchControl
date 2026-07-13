@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import { AlertTriangle, RotateCcw, Home } from 'lucide-react'
-import { AegisLogo } from '@/components/aegis/logo'
+import { PitchControlLogo } from '@/components/pitchcontrol/logo'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -24,7 +24,7 @@ export default function Error({
       <div className="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[620px] -translate-x-1/2 rounded-full bg-destructive/10 blur-[120px]" />
 
       <div className="relative mb-8">
-        <AegisLogo className="scale-110" />
+        <PitchControlLogo className="scale-110" />
       </div>
 
       <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-destructive/40 bg-destructive/10 text-destructive">

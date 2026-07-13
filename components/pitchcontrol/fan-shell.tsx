@@ -1,4 +1,4 @@
-import { PortalNav } from '@/components/aegis/portal-nav'
+import { PortalNav } from '@/components/pitchcontrol/portal-nav'
 
 export function FanShell({
   title,

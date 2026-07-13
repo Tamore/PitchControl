@@ -14,7 +14,7 @@ import {
   FileText,
 } from 'lucide-react'
 import Link from 'next/link'
-import { FanShell } from '@/components/aegis/fan-shell'
+import { FanShell } from '@/components/pitchcontrol/fan-shell'
 import { AI_DECISIONS, DATA_USAGE } from '@/lib/fan-data'
 
 function confidenceTone(c: number) {

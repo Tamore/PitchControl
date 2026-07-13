@@ -10,7 +10,7 @@ import {
   Trophy,
 } from 'lucide-react'
 import Image from 'next/image'
-import { AegisLogo } from '@/components/aegis/logo'
+import { PitchControlLogo } from '@/components/pitchcontrol/logo'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { AuthGateway } from '@/components/landing/auth-gateway'
@@ -50,7 +50,7 @@ export default function LandingPage() {
           {/* Login Card */}
           <motion.div variants={fadeUp} className="border border-border/80 bg-card/60 backdrop-blur-2xl shadow-2xl p-4 rounded-3xl">
             <div className="flex flex-col items-center text-center mb-3">
-              <AegisLogo />
+              <PitchControlLogo />
               <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-widest text-primary">
                 <Trophy className="h-3.5 w-3.5" />
                 FIFA WORLD CUP 26™

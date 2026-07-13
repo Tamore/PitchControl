@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-export function AegisLogo({ className }: { className?: string }) {
+export function PitchControlLogo({ className }: { className?: string }) {
   return (
     <div className={cn('flex items-center gap-2.5', className)}>
       <span className="relative inline-flex h-8 w-8 items-center justify-center">

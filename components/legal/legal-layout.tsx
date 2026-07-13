@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft, FileText, ShieldCheck, Lock } from 'lucide-react'
-import { AegisLogo } from '@/components/aegis/logo'
+import { PitchControlLogo } from '@/components/pitchcontrol/logo'
 
 const DOCS = [
   { href: '/legal/privacy', label: 'Privacy Policy', icon: Lock },
@@ -35,7 +35,7 @@ export function LegalLayout({
             >
               <ArrowLeft className="h-4 w-4" />
             </Link>
-            <AegisLogo />
+            <PitchControlLogo />
             <span className="hidden rounded-full border border-border/70 px-3 py-1 text-xs font-medium text-muted-foreground sm:inline-flex">
               Legal
             </span>

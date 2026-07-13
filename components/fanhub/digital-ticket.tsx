@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { QrCode, Trophy } from 'lucide-react'
-import { AegisLogo } from '@/components/aegis/logo'
+import { PitchControlLogo } from '@/components/pitchcontrol/logo'
 import { useStadium } from '@/components/providers/StadiumProvider'
 
 export function DigitalTicket() {

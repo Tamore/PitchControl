@@ -15,12 +15,12 @@ import {
   Info,
   ShieldCheck,
 } from 'lucide-react'
-import { PortalNav } from '@/components/aegis/portal-nav'
+import { PortalNav } from '@/components/pitchcontrol/portal-nav'
 import { HeatmapStadium } from '@/components/command/heatmap-stadium'
 import { WorkforcePanel } from '@/components/command/workforce-panel'
 import { DirectorConsole } from '@/components/command/director-console'
 import { MissionTimeline } from '@/components/command/mission-timeline'
-import { KPIS } from '@/lib/aegis'
+import { KPIS } from '@/lib/pitchcontrol'
 import { Spotlight } from '@/components/ui/spotlight'
 import { IncidentFeed } from '@/components/command/incident-card'
 
@@ -83,7 +83,7 @@ export default function CommandCenterPage() {
 
         {/* KPI row */}
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {KPIS.map((k, i) => (
+          {KPIS.map((k: any, i: number) => (
             <motion.div
               key={k.label}
               initial={{ opacity: 0, y: 14 }}
@@ -221,7 +221,7 @@ export default function CommandCenterPage() {
           {/* Column 2: Agent Operations */}
           <div className="xl:col-span-4 flex flex-col gap-4">
             <Panel title="Agent Status">
-              <WorkforcePanel />
+              <WorkforcePanel endIndex={4} className="flex flex-col gap-4" />
             </Panel>
           </div>
 
@@ -230,6 +230,11 @@ export default function CommandCenterPage() {
             <DirectorConsole />
           </div>
 
+        </div>
+
+        {/* Bottom Row: Remaining Agent Operations */}
+        <div className="mt-4">
+          <WorkforcePanel startIndex={4} className="grid gap-4 xl:grid-cols-3" />
         </div>
       </main>
     </div>

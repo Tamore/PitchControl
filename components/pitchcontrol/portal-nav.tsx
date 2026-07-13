@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import { AegisLogo } from '@/components/aegis/logo'
-import { AccountMenu } from '@/components/aegis/account-menu'
+import { PitchControlLogo } from '@/components/pitchcontrol/logo'
+import { AccountMenu } from '@/components/pitchcontrol/account-menu'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -28,9 +28,9 @@ export function PortalNav({
           >
             <ArrowLeft className="h-4 w-4" />
           </Link>
-          <AegisLogo />
+          <PitchControlLogo />
           
-          {/* Lateral navigation removed to enforce Aegis Gateway authentication */}
+          {/* Lateral navigation removed to enforce PitchControl Gateway authentication */}
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           {/* CTA removed since main NAV links handle routing now */}

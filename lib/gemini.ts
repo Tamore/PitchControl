@@ -24,7 +24,7 @@ Your response MUST be valid JSON matching this exact structure, with no markdown
 
 // Robust Fallback for demo reliability (Quota limits or missing API key)
 const getFallbackResponse = (event: string) => {
-  console.warn("⚠️ Aegis Orchestrator: Using local fallback response. (API Key missing or rate limited)");
+  console.warn("⚠️ PitchControl Orchestrator: Using local fallback response. (API Key missing or rate limited)");
   
   if (event.includes("TICKET_PURCHASE")) {
     return {

@@ -15,7 +15,7 @@ import {
   Mail,
   Smartphone,
 } from 'lucide-react'
-import { FanShell } from '@/components/aegis/fan-shell'
+import { FanShell } from '@/components/pitchcontrol/fan-shell'
 import { ToggleSwitch } from '@/components/ui/toggle-switch'
 import { Modal } from '@/components/ui/modal'
 import { buttonVariants } from '@/components/ui/button'

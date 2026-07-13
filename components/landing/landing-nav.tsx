@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { AegisLogo } from '@/components/aegis/logo'
+import { PitchControlLogo } from '@/components/pitchcontrol/logo'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -16,7 +16,7 @@ export function LandingNav() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
         <div className="flex items-center gap-8">
-          <AegisLogo />
+          <PitchControlLogo />
           <nav className="hidden items-center gap-7 md:flex">
             {NAV.map((item) => (
               <Link

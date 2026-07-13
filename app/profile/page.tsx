@@ -15,7 +15,7 @@ import {
   CalendarClock,
   Pencil,
 } from 'lucide-react'
-import { FanShell } from '@/components/aegis/fan-shell'
+import { FanShell } from '@/components/pitchcontrol/fan-shell'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { FAN, MATCH_HISTORY } from '@/lib/fan-data'

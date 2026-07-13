@@ -222,7 +222,7 @@ export function AuthGateway() {
               </h3>
               <p className="text-xs text-muted-foreground mt-1">
                 {authState === 'authenticating' 
-                  ? 'Aegis Security Framework' 
+                  ? 'PitchControl Security Framework' 
                   : 'Routing to secure environment...'}
               </p>
             </div>

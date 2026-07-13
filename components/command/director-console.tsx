@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Crown, CornerDownLeft, ArrowDown, CheckCircle2, Loader2 } from 'lucide-react'
-import { DIRECTOR_CHAIN } from '@/lib/aegis'
+import { DIRECTOR_CHAIN } from '@/lib/pitchcontrol'
 import { useStadium } from '@/components/providers/StadiumProvider'
 
 const SUGGESTIONS = [

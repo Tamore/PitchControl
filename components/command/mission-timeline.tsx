@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Ticket, Radio, Users, Crown, Settings2, ShieldCheck } from 'lucide-react'
-import { TIMELINE, type TimelineEvent } from '@/lib/aegis'
+import { TIMELINE, type TimelineEvent } from '@/lib/pitchcontrol'
 
 import { useStadium } from '@/components/providers/StadiumProvider'
 
@@ -42,43 +42,32 @@ export function MissionTimeline() {
 
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-card/80 p-5">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="font-display text-base font-semibold">Mission Timeline</h3>
-        <span className="inline-flex items-center gap-1.5 font-mono text-[0.6rem] tracking-widest text-primary">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-          </span>
-          LIVE STREAM
-        </span>
+    <div className="w-full h-full bg-white rounded-[2rem] p-6 border border-slate-200 flex flex-col gap-4 shadow-sm">
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="text-xs font-bold text-blue-700 uppercase tracking-widest">Mission Timeline</h3>
+        <span className="text-xs text-slate-500">Real-time History</span>
       </div>
 
-      <div className="relative flex-1 overflow-hidden">
-        <div className="absolute bottom-0 left-[13px] top-1 w-px bg-border" />
+      <div className="flex-1 overflow-y-auto space-y-5 pr-2">
         <AnimatePresence initial={false}>
           {missionTimeline.map((e, i) => {
             const kind = agentToKind(e.agent);
-            const Icon = iconMap[kind] || Crown;
+            const isLatest = i === 0;
             return (
               <motion.div
-                key={`${e.time}-${e.message}-${i}`}
+                key={`${e.timestamp}-${e.message}-${i}`}
                 layout
                 initial={{ opacity: 0, x: -12, height: 0 }}
                 animate={{ opacity: 1, x: 0, height: 'auto' }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35 }}
-                className="relative flex gap-3 pb-4"
+                className={`flex gap-4 items-start border-l-2 pl-4 relative ${isLatest ? 'border-blue-600' : 'border-slate-200'}`}
               >
-                <span className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border bg-card">
-                  <Icon className={`h-3.5 w-3.5 ${colorMap[kind]}`} />
-                </span>
-                <div className="min-w-0 pt-0.5">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-[0.65rem] text-muted-foreground">{e.timestamp}</span>
-                    <span className="text-[0.65rem] font-medium text-foreground/70">{e.agent}</span>
-                  </div>
-                  <p className="text-xs text-foreground">{e.message}</p>
+                <div className={`absolute -left-[5px] top-1.5 w-2 h-2 rounded-full ${isLatest ? 'bg-blue-600' : 'bg-slate-300'}`}></div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-bold text-slate-900">{e.agent} Action</span>
+                  <span className="text-xs text-slate-500 mt-0.5">{e.message}</span>
+                  <span className="text-[10px] text-slate-400 mt-1.5">{e.timestamp}</span>
                 </div>
               </motion.div>
             )
