@@ -392,14 +392,15 @@ export default function BookTicketPage() {
                   </p>
                 </div>
 
-                <div className="w-full mt-4 p-4 rounded-xl border border-border/60 bg-card flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+                <div className="w-full mt-4 p-4 rounded-xl border border-primary/40 bg-card/40 backdrop-blur-md shadow-[0_0_30px_rgba(34,197,94,0.1)] flex items-center justify-between relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-transparent opacity-50"></div>
+                  <div className="flex items-center gap-3 relative z-10">
+                    <div className="h-10 w-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
                       <Ticket className="h-5 w-5" />
                     </div>
                     <div className="text-left">
-                      <div className="font-semibold text-sm">Digital Ticket Minted</div>
-                      <div className="text-xs text-muted-foreground">Added to FanHub Wallet</div>
+                      <div className="font-semibold text-sm text-foreground">Digital Ticket Minted</div>
+                      <div className="text-xs text-primary font-medium tracking-wide">Secured in FanHub Wallet</div>
                     </div>
                   </div>
                 </div>

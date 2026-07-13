@@ -48,8 +48,9 @@ export default function LandingPage() {
             className="w-full max-w-[400px] xl:max-w-md"
           >
           {/* Login Card */}
-          <motion.div variants={fadeUp} className="border border-border/80 bg-card/60 backdrop-blur-2xl shadow-2xl p-4 rounded-3xl">
-            <div className="flex flex-col items-center text-center mb-3">
+          <motion.div variants={fadeUp} className="border border-primary/20 bg-card/60 backdrop-blur-2xl shadow-[0_0_40px_rgba(var(--primary),0.05)] p-4 rounded-3xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-50 z-0"></div>
+            <div className="relative z-10 flex flex-col items-center text-center mb-3">
               <PitchControlLogo />
               <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-widest text-primary">
                 <Trophy className="h-3.5 w-3.5" />
