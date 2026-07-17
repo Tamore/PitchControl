@@ -105,12 +105,12 @@ export default function FanHubPage() {
             </div>
 
             {/* Right side: 3D Seat Map with Pin */}
-            <div className="lg:col-span-7 relative">
+            <div className="lg:col-span-7 relative min-h-[450px]">
               <motion.div 
                 initial={{ opacity: 0, scale: 0.98 }} 
                 animate={{ opacity: 1, scale: 1 }} 
                 transition={{ duration: 0.6 }}
-                className="absolute inset-0 min-h-[450px]"
+                className="absolute inset-0"
               >
                 <InteractiveSeatMap activeSection={walletTickets[0]?.section || '112'} readOnly />
               </motion.div>
