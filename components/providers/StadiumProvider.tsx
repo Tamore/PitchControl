@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useCallback } from 'react';
 import { orchestrateWorkflow } from '../../lib/gemini';
 import { WALLET_TICKETS, WalletTicket } from '../../lib/fan-data';
 import { TIMELINE } from '../../lib/pitchcontrol';
@@ -60,11 +60,11 @@ export const StadiumProvider = ({ children }: { children: ReactNode }) => {
   const [isOrchestrating, setIsOrchestrating] = useState(false);
   const [walletTickets, setWalletTickets] = useState<WalletTicket[]>(WALLET_TICKETS);
 
-  const bookTicket = (ticket: WalletTicket) => {
+  const bookTicket = useCallback((ticket: WalletTicket) => {
     setWalletTickets(prev => [ticket, ...prev]);
-  };
+  }, []);
 
-  const addLog = (agent: string, message: string) => {
+  const addLog = useCallback((agent: string, message: string) => {
     const now = new Date();
     // Format timestamp exactly as requested: HH:MM:SS
     const timestamp = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
@@ -75,10 +75,10 @@ export const StadiumProvider = ({ children }: { children: ReactNode }) => {
       message, 
       timestamp 
     }, ...prev]);
-  };
+  }, []);
 
   // The primary dispatch function that triggers the Single-Call Ripple Effect
-  const dispatchEvent = async (eventText: string) => {
+  const dispatchEvent = useCallback(async (eventText: string) => {
     setIsOrchestrating(true);
     
     // Log the initial trigger
@@ -116,7 +116,7 @@ export const StadiumProvider = ({ children }: { children: ReactNode }) => {
     }
 
     setIsOrchestrating(false);
-  };
+  }, [addLog]);
 
   return (
     <StadiumContext.Provider value={{

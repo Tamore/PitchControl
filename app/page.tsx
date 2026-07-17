@@ -2,19 +2,18 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import {
-  ArrowRight,
-  ShieldCheck,
-  User,
-  Fingerprint,
-  Trophy,
-} from 'lucide-react'
+import { Trophy } from 'lucide-react'
 import Image from 'next/image'
 import { PitchControlLogo } from '@/components/pitchcontrol/logo'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { AuthGateway } from '@/components/landing/auth-gateway'
-import { Globe } from '@/components/ui/globe'
+import dynamic from 'next/dynamic'
+
+const Globe = dynamic(() => import('@/components/ui/globe').then((mod) => mod.Globe), { 
+  ssr: false,
+  loading: () => <div className="w-full h-full rounded-full border border-primary/20 bg-primary/5 animate-pulse" />
+})
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
